@@ -102,11 +102,11 @@
         android:minHeight="50dp"
         android:background="@drawable/rounded_corners"
         android:hint="@string/event_type"
-        app:endIconMode="dropdown_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/field_event_date"
+        app:endIconMode="dropdown_menu"
         app:startIconDrawable="@drawable/baseline_celebration_24"
         >
 
