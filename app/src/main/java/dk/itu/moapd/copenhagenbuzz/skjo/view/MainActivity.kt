@@ -40,6 +40,9 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        //the viewBindings references our UI components
+        //kotlin changes the id from, for instance, edit_text_event_name to editTextEventName.
+        //https://developer.android.com/topic/libraries/view-binding
         val eventName = binding.contentMain.editTextEventName
         val eventLocation = binding.contentMain.editTextEventLocation
         val eventType = binding.contentMain.editEventType

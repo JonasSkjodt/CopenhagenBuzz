@@ -1,8 +1,17 @@
 package dk.itu.moapd.copenhagenbuzz.skjo.model
 
-//data classes doesn't need to add custom logic
-//to getters and setters like in java, so the below is enough
-//https://kotlinlang.org/docs/data-classes.html
+/**
+ * The Event data class represents various details of a user generated event
+ *
+ * @param eventName the name of the event.
+ * @param eventLocation the location of the event.
+ * @param eventDate the event range of date.
+ * @param eventType the type of event.
+ * @param eventDescription the description of the event.
+ *
+ * @see [Kotlin Documentation on Data Classes](https://kotlinlang.org/docs/data-classes.html)
+ */
+
 data class Event(
     var eventName: String,
     var eventLocation: String,
