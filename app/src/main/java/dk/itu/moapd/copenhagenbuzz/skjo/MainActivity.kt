@@ -8,6 +8,7 @@ import androidx.core.view.WindowCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.ActivityMainBinding
 import android.widget.Toast
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
@@ -41,6 +42,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+        //splash screen start
+        Thread.sleep(2000)
+        installSplashScreen()
+        //splash screen end
+
         setContentView(binding.root)
 
         //find the ids and bind them to the variables
