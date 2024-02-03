@@ -13,6 +13,7 @@ import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import androidx.core.util.Pair
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,12 +52,12 @@ class MainActivity : AppCompatActivity() {
         eventDate = findViewById(R.id.field_event_date)
 
         eventDate.editText?.setOnClickListener {
-            showDatePicker()
+            showDateRangePicker()
         }
 
         // Set listeners
         eventDate.setEndIconOnClickListener {
-            showDatePicker()
+            showDateRangePicker()
         }
 
         addEventButton.setOnClickListener {
@@ -69,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 event.setEventName(eventName.text.toString().trim())
                 event.setEventLocation(eventLocation.text.toString().trim())
                 //?: is the elvis operator to handle a potential nullpointerexception in Kotlin
-                // https://stackoverflow.com/questions/48253107/what-does-do-in-kotlin-elvis-operator
+                //https://stackoverflow.com/questions/48253107/what-does-do-in-kotlin-elvis-operator
                 event.setEventDate(eventDate.editText?.text.toString().trim() ?: "")
                 event.setEventType(eventType.text.toString().trim())
                 event.setEventDescription(eventDescription.text.toString().trim())
@@ -78,21 +79,38 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
     //show the material date picker
-    // https://github.com/material-components/material-components-android/blob/master/docs/components/DatePicker.md
-    private fun showDatePicker() {
-        val datePicker =
-            MaterialDatePicker.Builder.datePicker()
-                .setTitleText("Select date")
-                .build()
+    //https://github.com/material-components/material-components-android/blob/master/docs/components/DatePicker.md
+    private fun showDateRangePicker() {
+        val dateRangePicker = MaterialDatePicker.Builder.dateRangePicker()
+            .setTitleText("Select dates")
+            .setSelection(
+                //pair is a container to ease passing around a tuple of two objects.
+                //https://developer.android.com/reference/kotlin/androidx/core/util/package-summary
+                Pair(
+                    MaterialDatePicker.thisMonthInUtcMilliseconds(),
+                    MaterialDatePicker.todayInUtcMilliseconds()
+                )
+            )
+            .build()
 
-        datePicker.show(supportFragmentManager, "DATE_PICKER")
+        dateRangePicker.show(supportFragmentManager, "DATE_RANGE_PICKER")
 
-        datePicker.addOnPositiveButtonClickListener {
-            val date = Date(it)
-            val formattedDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(date)
-            eventDate.editText?.setText(formattedDate)
+        // stitched together from
+        // https://www.geeksforgeeks.org/how-to-implement-date-range-picker-in-android/
+        dateRangePicker.addOnPositiveButtonClickListener {
+            selection:
+                Pair<Long, Long> ->
+                val startDate = Date(selection.first)
+                val endDate = Date(selection.second)
+                val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                //format the picked dates
+                val formattedStartDate = formatter.format(startDate)
+                val formattedEndDate = formatter.format(endDate)
+                //now give us the two dates in the right format
+                val dateRangeText = "$formattedStartDate - $formattedEndDate"
+
+                eventDate.editText?.setText(dateRangeText)
         }
     }
     private fun showMessage() {

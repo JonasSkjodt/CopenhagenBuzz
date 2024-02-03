@@ -80,7 +80,7 @@
         app:layout_constraintTop_toBottomOf="@id/text_field_event_location"
         app:startIconDrawable="@drawable/baseline_calendar_month_24">
 
-        <!-- focusable="false" is to stop the user from typing the date in manually
+        <!--focusable="false" is to stop the user from typing the date in manually
         and only chose it through the date picker-->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_event_date"
@@ -89,6 +89,7 @@
             android:focusable="false"
             android:inputType="date" />
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/field_event_type"
@@ -154,6 +155,6 @@
         android:contentDescription="Add event"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@android:color/white"/>
+        app:tint="@android:color/black"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
