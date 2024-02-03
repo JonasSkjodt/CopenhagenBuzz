@@ -2,20 +2,16 @@ package dk.itu.moapd.copenhagenbuzz.skjo.view
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.ActivityMainBinding
 import android.widget.Toast
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.textfield.TextInputLayout
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import androidx.core.util.Pair
-import dk.itu.moapd.copenhagenbuzz.skjo.R
 import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
 
 class MainActivity : AppCompatActivity() {
@@ -26,14 +22,6 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private val TAG = MainActivity::class.qualifiedName
     }
-
-    //GUI variables
-    private lateinit var eventName: EditText
-    private lateinit var eventLocation: EditText
-    private lateinit var eventDate: TextInputLayout
-    private lateinit var eventType: EditText
-    private lateinit var eventDescription: EditText
-    private lateinit var addEventButton: FloatingActionButton
 
     // An instance of the 'Event' class
     private val event: Event = Event("","","","","")
@@ -52,13 +40,12 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        //find the ids and bind them to the variables
-        eventName = findViewById(R.id.edit_text_event_name)
-        eventLocation = findViewById(R.id.edit_text_event_location)
-        eventType = findViewById(R.id.edit_event_type)
-        eventDescription = findViewById(R.id.edit_event_description)
-        addEventButton = findViewById(R.id.fab_add_event)
-        eventDate = findViewById(R.id.field_event_date)
+        val eventName = binding.contentMain.editTextEventName
+        val eventLocation = binding.contentMain.editTextEventLocation
+        val eventType = binding.contentMain.editEventType
+        val eventDescription = binding.contentMain.editEventDescription
+        val addEventButton = binding.contentMain.fabAddEvent
+        val eventDate = binding.contentMain.fieldEventDate
 
         eventDate.editText?.setOnClickListener {
             showDateRangePicker()
@@ -76,15 +63,15 @@ class MainActivity : AppCompatActivity() {
                 eventType.text.toString().isNotEmpty() &&
                 eventDescription.text.toString().isNotEmpty()) {
 
-                event.setEventName(eventName.text.toString().trim())
-                event.setEventLocation(eventLocation.text.toString().trim())
-                //?: is the elvis operator to handle a potential nullpointerexception in Kotlin
-                //https://stackoverflow.com/questions/48253107/what-does-do-in-kotlin-elvis-operator
-                event.setEventDate(eventDate.editText?.text.toString().trim() ?: "")
-                event.setEventType(eventType.text.toString().trim())
-                event.setEventDescription(eventDescription.text.toString().trim())
-
-                showMessage()
+                //Create a new event instances from the event data class
+                val event = Event(
+                    eventName = eventName.text.toString().trim(),
+                    eventLocation = eventLocation.text.toString().trim(),
+                    eventDate = eventDate.editText?.text.toString().trim() ?: "",
+                    eventType = eventType.text.toString().trim(),
+                    eventDescription = eventDescription.text.toString().trim()
+                )
+                showMessage(event)
             }
         }
     }
@@ -119,10 +106,11 @@ class MainActivity : AppCompatActivity() {
                 //now give us the two dates in the right format
                 val dateRangeText = "$formattedStartDate - $formattedEndDate"
 
+                val eventDate = binding.contentMain.fieldEventDate
                 eventDate.editText?.setText(dateRangeText)
         }
     }
-    private fun showMessage() {
+    private fun showMessage(event: Event) {
         Log.d(TAG, event.toString())
         Toast.makeText(this, "Event added successfully", Toast.LENGTH_SHORT).show()
     }
