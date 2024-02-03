@@ -14,6 +14,15 @@ import java.util.Locale
 import androidx.core.util.Pair
 import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
 
+/**
+ * KDoc the code
+ * https://kotlinlang.org/docs/kotlin-doc.html#sample-identifier
+ * https://source.android.com/docs/core/architecture/hidl/code-style
+ */
+
+/**
+ * The MainActivity class handles user interactions (like events) and initializes the UI in the app
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
