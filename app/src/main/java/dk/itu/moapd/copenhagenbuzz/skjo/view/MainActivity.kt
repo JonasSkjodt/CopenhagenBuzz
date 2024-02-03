@@ -1,4 +1,4 @@
-package dk.itu.moapd.copenhagenbuzz.skjo
+package dk.itu.moapd.copenhagenbuzz.skjo.view
 
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +15,8 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import androidx.core.util.Pair
+import dk.itu.moapd.copenhagenbuzz.skjo.R
+import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         //splash screen start
-        Thread.sleep(2000)
+        Thread.sleep(1500)
         installSplashScreen()
         //splash screen end
 
