@@ -56,7 +56,6 @@
         app:layout_constraintTop_toBottomOf="@id/text_field_event_name"
         app:startIconDrawable="@drawable/baseline_add_location_alt_24">
 
-    <!-- Event location edit field -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_text_event_location"
         android:layout_width="match_parent"
@@ -64,6 +63,7 @@
         android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Event date range picker -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/field_event_date"
         android:layout_width="match_parent"
@@ -90,7 +90,8 @@
             android:inputType="date" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
+    <!-- Event type dropdown field with autocomplete-->
+    <!-- https://github.com/material-components/material-components-android/blob/master/docs/components/Menu.md -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/field_event_type"
         android:layout_width="match_parent"
@@ -109,7 +110,6 @@
         app:startIconDrawable="@drawable/baseline_celebration_24"
         >
 
-        <!-- Event type dropdown field -->
         <AutoCompleteTextView
             android:id="@+id/edit_event_type"
             android:layout_width="match_parent"
@@ -119,6 +119,7 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Event description edit field -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/field_event_description"
         android:layout_width="match_parent"
@@ -134,7 +135,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/field_event_type">
 
-        <!-- Event description edit field -->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_event_description"
             android:layout_width="match_parent"
@@ -144,6 +144,7 @@
             android:gravity="top"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- add event to log floating button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_event"
         android:layout_width="wrap_content"
