@@ -1,17 +1,16 @@
 package dk.itu.moapd.copenhagenbuzz.skjo.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.ActivityMainBinding
-import android.widget.Toast
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import androidx.core.util.Pair
+import com.google.android.material.snackbar.Snackbar
 import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
 
 /**
@@ -32,20 +31,24 @@ class MainActivity : AppCompatActivity() {
         private val TAG = MainActivity::class.qualifiedName
     }
 
-    // An instance of the 'Event' class
+
+    //An instance of the 'Event' class
     private val event: Event = Event("","","","","")
 
+    /**
+     * onCreate function for initializing the splashscreen and the current event layout
+     *
+     * event strings // listeners
+     * @param
+     *
+     * @return
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-
-        //splash screen start
-        Thread.sleep(1500)
-        installSplashScreen()
-        //splash screen end
 
         setContentView(binding.root)
 
@@ -87,8 +90,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    //show the material date picker
-    //https://github.com/material-components/material-components-android/blob/master/docs/components/DatePicker.md
+    /**
+     * The dateRangePicker method lets the user choose the dates for the event
+     *
+     * @param formattedStartDate the formatted chosen start date
+     * @param formattedEndDate the formatted chosen end date
+     *
+     * @return the two dates chosen from the date picker
+     *
+     * @see [MaterialDatePicker](https://github.com/material-components/material-components-android/blob/master/docs/components/DatePicker.md)
+     */
     private fun showDateRangePicker() {
         val dateRangePicker = MaterialDatePicker.Builder.dateRangePicker()
             .setTitleText("Select dates")
@@ -112,18 +123,34 @@ class MainActivity : AppCompatActivity() {
                 val startDate = Date(selection.first)
                 val endDate = Date(selection.second)
                 val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+
                 //format the picked dates
                 val formattedStartDate = formatter.format(startDate)
                 val formattedEndDate = formatter.format(endDate)
-                //now give us the two dates in the right format
+
+                //shows the two dates in the right format
                 val dateRangeText = "$formattedStartDate - $formattedEndDate"
 
                 val eventDate = binding.contentMain.fieldEventDate
                 eventDate.editText?.setText(dateRangeText)
         }
     }
+
+    /**
+     * After the event has been added, show the message with the event info
+     */
     private fun showMessage(event: Event) {
-        Log.d(TAG, event.toString())
-        Toast.makeText(this, "Event added successfully", Toast.LENGTH_SHORT).show()
+        // Convert the event details to a string message
+        val message = "Event created: \nName: ${event.eventName} " +
+                "Location: ${event.eventLocation} " +
+                "Date: ${event.eventDate} " +
+                "Type: ${event.eventType} " +
+                "Description: ${event.eventDescription}"
+
+        // see https://developer.android.com/reference/com/google/android/material/snackbar/Snackbar
+        // Show Snackbar with the message
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).apply {
+            show()
+        }
     }
 }

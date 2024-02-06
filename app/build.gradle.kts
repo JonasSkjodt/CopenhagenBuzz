@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "dk.itu.moapd.copenhagenbuzz.skjo"
-        minSdk = 31 //was 26 originally, switched it so I could use newer API splashscreen functions
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"

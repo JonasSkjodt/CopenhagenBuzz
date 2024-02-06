@@ -4,14 +4,6 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
 
-        <!--
-        splash intro app screen
-        This needs API 31 to work, and not 26 like the app was originally designated for
-        https://developer.android.com/develop/ui/views/launch/splash-screen
-        -->
-        <item name="android:windowSplashScreenBackground">@color/blue</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splashscreenicon</item>
-        <item name="postSplashScreenTheme">@style/Base.Theme.CopenhagenBuzz</item>
     </style>
     <style name="Theme.CopenhagenBuzz" parent="Base.Theme.CopenhagenBuzz" />
 </resources>

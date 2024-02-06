@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="type_items">
-        <item>Type 1</item>
-        <item>Type 2</item>
-        <item>Type 3</item>
+        <item>Festival</item>
+        <item>Concert</item>
+        <item>Party</item>
     </string-array>
 </resources>
