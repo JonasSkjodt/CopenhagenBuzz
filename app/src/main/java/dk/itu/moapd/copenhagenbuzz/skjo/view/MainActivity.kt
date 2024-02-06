@@ -36,12 +36,8 @@ class MainActivity : AppCompatActivity() {
     private val event: Event = Event("","","","","")
 
     /**
-     * onCreate function for initializing the splashscreen and the current event layout
-     *
-     * event strings // listeners
-     * @param
-     *
-     * @return
+     * Sets up the current layout, the view bindings, and listeners.
+     * When the add event button is clicked, it validates the input fields and then creates this new event (if all fields are non-empty).
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -91,12 +87,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
     /**
-     * The dateRangePicker method lets the user choose the dates for the event
-     *
-     * @param formattedStartDate the formatted chosen start date
-     * @param formattedEndDate the formatted chosen end date
-     *
-     * @return the two dates chosen from the date picker
+     * The dateRangePicker method lets the user choose the dates for the event.
+     * The selection is set to the current month's beginning and today's date in UTC milliseconds.
      *
      * @see [MaterialDatePicker](https://github.com/material-components/material-components-android/blob/master/docs/components/DatePicker.md)
      */
@@ -137,7 +129,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * After the event has been added, show the message with the event info
+     * After the event has been added, the showMessage functions shows the message
+     * with the event info. It uses Android's Snackbar component to present the message
+     * to the user
+     *
+     * @param event The Event object containing information about the event that has been added.
+     *
+     * @see [Snackbar](https://developer.android.com/reference/com/google/android/material/snackbar/Snackbar)
+     *
      */
     private fun showMessage(event: Event) {
         // Convert the event details to a string message
@@ -147,7 +146,6 @@ class MainActivity : AppCompatActivity() {
                 "Type: ${event.eventType} " +
                 "Description: ${event.eventDescription}"
 
-        // see https://developer.android.com/reference/com/google/android/material/snackbar/Snackbar
         // Show Snackbar with the message
         Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).apply {
             show()
