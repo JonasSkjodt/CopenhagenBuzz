@@ -5,4 +5,7 @@
     <string name="event_date">Event date</string>
     <string name="event_type">Event type</string>
     <string name="event_description">Event description</string>
+    <string name="fab_add_event">Add event</string>
+    <string name="user_login_button">Login</string>
+    <string name="guest_login_button">Guest</string>
 </resources>

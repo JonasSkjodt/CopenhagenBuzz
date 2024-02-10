@@ -144,7 +144,7 @@ class MainActivity : AppCompatActivity() {
                 "Description: ${event.eventDescription}"
 
         // Show Snackbar with the message
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).apply {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_INDEFINITE).apply {
             show()
         }
     }
