@@ -54,13 +54,15 @@ class MainActivity : AppCompatActivity() {
         val addEventButton = binding.contentMain.fabAddEvent
         val eventDate = binding.contentMain.fieldEventDate
 
-        eventDate.editText?.setOnClickListener {
-            showDateRangePicker()
-        }
+        //event listeners for the eventDate calendar
+        with(eventDate) {
+            editText?.setOnClickListener {
+                showDateRangePicker()
+            }
 
-        // Set listeners
-        eventDate.setEndIconOnClickListener {
-            showDateRangePicker()
+            setEndIconOnClickListener {
+                showDateRangePicker()
+            }
         }
 
         addEventButton.setOnClickListener {
