@@ -24,14 +24,14 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //kotlin's with attribute for easier listener code readability
+        //kotlin's "with" attribute for easier listener code readability
         with(binding) {
             userLoginButtonFront.setOnClickListener { navigateToMainActivity() }
             guestLoginButtonFront.setOnClickListener { navigateToMainActivity() }
         }
     }
     // navigateToMainActivity
-    // reduces redundancy since both buttons are pointed to the activity_main.xml layout
+    // reduces redundancy since both buttons are currently pointed to the activity_main.xml layout
     // @see intent https://developer.android.com/reference/kotlin/android/content/Intent
     private fun navigateToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
