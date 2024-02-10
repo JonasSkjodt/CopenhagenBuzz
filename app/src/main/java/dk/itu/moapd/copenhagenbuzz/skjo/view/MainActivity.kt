@@ -37,11 +37,8 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
 
         //the viewBindings references our UI components
@@ -109,8 +106,8 @@ class MainActivity : AppCompatActivity() {
         // stitched together from
         // https://www.geeksforgeeks.org/how-to-implement-date-range-picker-in-android/
         dateRangePicker.addOnPositiveButtonClickListener {
-                selection:
-                Pair<Long, Long> ->
+            selection:
+            Pair<Long, Long> ->
             val startDate = Date(selection.first)
             val endDate = Date(selection.second)
             val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
