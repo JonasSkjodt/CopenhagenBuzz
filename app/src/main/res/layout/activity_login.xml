@@ -41,7 +41,7 @@ https://developer.android.com/reference/androidx/constraintlayout/widget/Constra
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/guest_login_button"
-            app:icon="@drawable/baseline_person_pin_24"
+            app:icon="@drawable/round_account_circle_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/user_login_button_front"
