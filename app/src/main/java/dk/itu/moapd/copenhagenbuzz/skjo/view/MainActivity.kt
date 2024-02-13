@@ -1,7 +1,9 @@
 package dk.itu.moapd.copenhagenbuzz.skjo.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.ActivityMainBinding
@@ -26,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    //set the default for isLoggedIn as false
     private var isLoggedIn: Boolean = false
 
     // A set of private constants used in this class.
@@ -46,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //make sure the toolbar is here (header menu)
+        //make sure the toolbar is there (header menu)
         val toolbar: MaterialToolbar = findViewById(R.id.topAppBar)
         setSupportActionBar(toolbar)
 
@@ -56,11 +59,24 @@ class MainActivity : AppCompatActivity() {
         setupUI()
     }
 
+    /**
+     * Inflates the menu resource (defined in XML) into the Menu provided in the parameter.
+     *
+     * @param menu The options menu in which we place your items (currently linked to top_app_bar.xml).
+     * @return Boolean Return true to display the menu; if we return false it will not be shown.
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.top_app_bar, menu)
         return true
     }
 
+    /**
+     * Prepares the screen's standard options menu to be displayed.
+     * This is called right before the menu is shown, every time it is shown.
+     *
+     * @param menu The options menu as last shown or first initialized by onCreateOptionsMenu().
+     * @return Boolean we must return true for the menu to be displayed; if we return false it will not be shown.
+     */
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         val isLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
 
@@ -69,6 +85,27 @@ class MainActivity : AppCompatActivity() {
         menu.findItem(R.id.guest_account_item)?.isVisible = isLoggedIn
 
         return super.onPrepareOptionsMenu(menu)
+    }
+
+    /**
+     * This method is called whenever an item in the options menu is selected.
+     * The default returns false.
+     * (for now it only handles guests being able to click back to the login page)
+     *
+     * @param item The menu item that was selected.
+     * @return Boolean Return false to allow normal menu processing
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.user_account_item -> {
+                // Intent to start LoginActivity
+                val loginIntent = Intent(this, LoginActivity::class.java)
+                startActivity(loginIntent)
+                true
+            }
+            // Add more cases for other menu items as we go to the next exercises
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     /**
