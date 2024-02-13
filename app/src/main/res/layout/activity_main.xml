@@ -7,6 +7,21 @@
     android:fitsSystemWindows="true"
     tools:context=".view.MainActivity">
 
+    <!--
+    <androidx.core.widget.NestedScrollView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:fillViewport="true"
+         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+         android:id="@+id/content_main"
+         layout="@layout/content_main" />
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.appbar.AppBarLayout ... >
+    -->
+
 
     <include
         android:id="@+id/content_main"

@@ -1,6 +1,7 @@
 package dk.itu.moapd.copenhagenbuzz.skjo.view
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.ActivityMainBinding
@@ -9,7 +10,9 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import androidx.core.util.Pair
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
+import dk.itu.moapd.copenhagenbuzz.skjo.R
 import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
 
 /**
@@ -22,6 +25,8 @@ import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private var isLoggedIn: Boolean = false
 
     // A set of private constants used in this class.
     companion object {
@@ -41,9 +46,35 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //the viewBindings references our UI components
-        //kotlin changes the id from, for instance, edit_text_event_name to editTextEventName.
-        //https://developer.android.com/topic/libraries/view-binding
+        //make sure the toolbar is here (header menu)
+        val toolbar: MaterialToolbar = findViewById(R.id.topAppBar)
+        setSupportActionBar(toolbar)
+
+        // Retrieve the 'isLoggedIn' value from the Intent
+        isLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
+
+        setupUI()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_app_bar, menu)
+        return true
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        val isLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
+
+        // show or hide the menu items based on whether the user is logged in or not
+        menu.findItem(R.id.user_account_item)?.isVisible = !isLoggedIn
+        menu.findItem(R.id.guest_account_item)?.isVisible = isLoggedIn
+
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    /**
+     * SetupUI() Initializes the UI components (viewBindings references our UI components)
+     */
+    private fun setupUI() {
         val eventName = binding.contentMain.editTextEventName
         val eventLocation = binding.contentMain.editTextEventLocation
         val eventType = binding.contentMain.editEventType
@@ -51,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         val addEventButton = binding.contentMain.fabAddEvent
         val eventDate = binding.contentMain.fieldEventDate
 
-        //event listeners for the eventDate calendar
+        // Set up event listeners
         with(eventDate) {
             editText?.setOnClickListener {
                 showDateRangePicker()
@@ -69,7 +100,7 @@ class MainActivity : AppCompatActivity() {
                 eventType.text.toString().isNotEmpty() &&
                 eventDescription.text.toString().isNotEmpty()) {
 
-                //Create a new event instances from the event data class
+                // Create a new event instance from the event data class
                 val event = Event(
                     eventName = eventName.text.toString().trim(),
                     eventLocation = eventLocation.text.toString().trim(),

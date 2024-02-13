@@ -26,15 +26,21 @@ class LoginActivity : AppCompatActivity() {
 
         //kotlin's "with" attribute for easier listener code readability
         with(binding) {
-            userLoginButtonFront.setOnClickListener { navigateToMainActivity() }
-            guestLoginButtonFront.setOnClickListener { navigateToMainActivity() }
+            userLoginButtonFront.setOnClickListener {
+                navigateToMainActivity( isLoggedIn = true)
+            }
+            guestLoginButtonFront.setOnClickListener {
+                navigateToMainActivity( isLoggedIn = false)
+            }
         }
     }
     // navigateToMainActivity
-    // reduces redundancy since both buttons are currently pointed to the activity_main.xml layout
+    // navigates to main activity
     // @see intent https://developer.android.com/reference/kotlin/android/content/Intent
-    private fun navigateToMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
+    private fun navigateToMainActivity(isLoggedIn: Boolean) {
+        val intent = Intent(this, MainActivity::class.java).apply {
+            putExtra("isLoggedIn", isLoggedIn)
+        }
         startActivity(intent)
     }
 }
