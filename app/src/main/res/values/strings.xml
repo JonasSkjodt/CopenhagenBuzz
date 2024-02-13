@@ -8,5 +8,6 @@
     <string name="fab_add_event">Add event</string>
     <string name="user_login_button">Login</string>
     <string name="guest_login_button">Guest</string>
-    <string name="account">Account</string>
+    <string name="Login">Login</string>
+    <string name="Logout">Logout</string>
 </resources>
