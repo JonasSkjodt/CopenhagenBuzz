@@ -9,21 +9,6 @@ https://developer.android.com/reference/androidx/constraintlayout/widget/Constra
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--https://github.com/material-components/material-components-android/blob/master/docs/components/TopAppBar.md
-    for the menu, appluapp:menu="@menu/top_app_bar"
-    -->
-
-    <TextView
-        style="?textAppearanceHeadlineSmall"
-        android:id="@+id/text_view_app_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-    />
-
     <!-- Event Name field -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_field_event_name"
@@ -31,14 +16,14 @@ https://developer.android.com/reference/androidx/constraintlayout/widget/Constra
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="75dp"
         android:background="@drawable/rounded_corners"
         android:hint="@string/event_name"
         app:startIconDrawable="@drawable/baseline_festival_24"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_app_name">
+        app:layout_constraintTop_toTopOf="parent">
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_text_event_name"
