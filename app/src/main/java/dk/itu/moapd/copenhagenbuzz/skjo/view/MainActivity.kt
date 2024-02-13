@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity() {
 
         setupUI()
     }
-
     /**
      * Inflates the menu resource (defined in XML) into the Menu provided in the parameter.
      *
@@ -69,7 +68,6 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.top_app_bar, menu)
         return true
     }
-
     /**
      * Prepares the screen's standard options menu to be displayed.
      * This is called right before the menu is shown, every time it is shown.
@@ -86,7 +84,6 @@ class MainActivity : AppCompatActivity() {
 
         return super.onPrepareOptionsMenu(menu)
     }
-
     /**
      * This method is called whenever an item in the options menu is selected.
      * The default returns false.
@@ -107,7 +104,6 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
     /**
      * SetupUI() Initializes the UI components (viewBindings references our UI components)
      */

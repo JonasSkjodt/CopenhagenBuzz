@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     // navigateToMainActivity
-    // navigates to main activity
+    // uses Intent to navigate to main activity and sets boolean "isLoggedIn"
     // @see intent https://developer.android.com/reference/kotlin/android/content/Intent
     private fun navigateToMainActivity(isLoggedIn: Boolean) {
         val intent = Intent(this, MainActivity::class.java).apply {
