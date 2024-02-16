@@ -2,6 +2,7 @@ package dk.itu.moapd.copenhagenbuzz.skjo.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import androidx.core.util.Pair
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
@@ -68,17 +70,33 @@ class MainActivity : AppCompatActivity() {
         val toolbar: MaterialToolbar = findViewById(R.id.topAppBar)
         setSupportActionBar(toolbar)
 
-        if (savedInstanceState == null) {
-            // Initialize isLoggedIn state from intent only if savedInstanceState is null (rotation bug, @see viewModel)
-            viewModel.isLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
+        bottomNavigation = findViewById(R.id.bottomNavigationView)
 
-            //add our fragment
-            //@see https://www.geeksforgeeks.org/bottom-navigation-bar-in-android-using-kotlin/
-            supportFragmentManager.beginTransaction()
-                .replace(
-                    R.id.fragment_container,AddEventFragment())
-                .commit()
+        if (savedInstanceState == null) {
+            viewModel.isLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
+            loadFragment(AddEventFragment()) // Load default fragment
         }
+
+        bottomNavigation.setOnItemSelectedListener { item ->
+            val fragment = when (item.itemId) {
+                R.id.navigation_timeline -> TimelineFragment()
+                R.id.navigation_favorites -> FavoritesFragment()
+                R.id.navigation_maps -> MapsFragment()
+                R.id.navigation_calendar -> CalendarFragment()
+                else -> {
+                    Log.w(TAG, "Unknown navigation item selected")
+                    return@setOnItemSelectedListener false
+                }
+            }
+            loadFragment(fragment)
+            true
+        }
+    }
+
+    private  fun loadFragment(fragment: Fragment){
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container,fragment)
+        transaction.commit()
     }
 
     /**
