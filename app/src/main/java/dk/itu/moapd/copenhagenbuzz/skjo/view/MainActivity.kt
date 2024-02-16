@@ -8,29 +8,19 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.ActivityMainBinding
-import com.google.android.material.datepicker.MaterialDatePicker
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.snackbar.Snackbar
 import dk.itu.moapd.copenhagenbuzz.skjo.R
 import dk.itu.moapd.copenhagenbuzz.skjo.controller.MainViewModel
-import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
 
 /**
  * The MainActivity class handles user interactions (like events) and initializes the UI in the app
  *
  * KDoc the code
- * @see https://kotlinlang.org/docs/kotlin-doc.html#sample-identifier
- * @see https://source.android.com/docs/core/architecture/hidl/code-style
+ * @see (https://kotlinlang.org/docs/kotlin-doc.html#sample-identifier)
+ * @see (https://source.android.com/docs/core/architecture/hidl/code-style)
  */
 class MainActivity : AppCompatActivity() {
 
@@ -47,7 +37,7 @@ class MainActivity : AppCompatActivity() {
      * viewModel
      * viewModel sorts rotation data bug with Android Jetpack
      *
-     * @see slide3 https://learnit.itu.dk/pluginfile.php/383364/mod_resource/content/0/Slides%20%2303.pdf
+     * @see (https://learnit.itu.dk/pluginfile.php/383364/mod_resource/content/0/Slides%20%2303.pdf)
      */
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider(this)[MainViewModel::class.java]

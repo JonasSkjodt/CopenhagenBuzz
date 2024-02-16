@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
-import dk.itu.moapd.copenhagenbuzz.skjo.controller.MainViewModel
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentAddEventBinding
 import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
 import java.text.SimpleDateFormat
@@ -21,15 +19,9 @@ class AddEventFragment : Fragment(){
     private var _binding: FragmentAddEventBinding? = null
     private val binding get() = _binding!!
 
-    //An instance of the 'Event' class
-    //private val event: Event = Event("","","","","")
-
-    // Initialize the ViewModel scoped to the Fragment
-    //private val viewModel: MainViewModel by activityViewModels()
-
     /**
      * onCreateView
-     * @see https://github.com/material-components/material-components-android/blob/master/docs/components/BottomSheet.md
+     * @see [onCreateView](https://github.com/material-components/material-components-android/blob/master/docs/components/BottomSheet.md)
      */
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,7 +70,7 @@ class AddEventFragment : Fragment(){
                 val event = Event(
                     eventName = eventName.text.toString().trim(),
                     eventLocation = eventLocation.text.toString().trim(),
-                    eventDate = eventDate.editText?.text.toString().trim() ?: "",
+                    eventDate = eventDate.editText?.text.toString().trim(),
                     eventType = eventType.text.toString().trim(),
                     eventDescription = eventDescription.text.toString().trim()
                 )
