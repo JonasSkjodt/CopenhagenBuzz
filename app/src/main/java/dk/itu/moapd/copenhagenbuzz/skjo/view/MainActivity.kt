@@ -13,7 +13,11 @@ import java.util.Date
 import java.util.Locale
 import androidx.core.util.Pair
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import dk.itu.moapd.copenhagenbuzz.skjo.R
 import dk.itu.moapd.copenhagenbuzz.skjo.controller.MainViewModel
@@ -29,6 +33,8 @@ import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var bottomNavigation : BottomNavigationView
 
     // A set of private constants used in this class.
     companion object {
@@ -67,8 +73,10 @@ class MainActivity : AppCompatActivity() {
             viewModel.isLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
 
             //add our fragment
+            //@see https://www.geeksforgeeks.org/bottom-navigation-bar-in-android-using-kotlin/
             supportFragmentManager.beginTransaction()
-                .replace(R.id.event_fragment_container, AddEventFragment())
+                .replace(
+                    R.id.fragment_container,AddEventFragment())
                 .commit()
         }
     }

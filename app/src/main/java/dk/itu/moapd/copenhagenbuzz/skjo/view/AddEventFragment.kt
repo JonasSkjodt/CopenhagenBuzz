@@ -24,8 +24,13 @@ class AddEventFragment : Fragment(){
     // Initialize the ViewModel scoped to the Fragment
     private val viewModel: MainViewModel by activityViewModels()
 
+    /**
+     * onCreateView
+     * @see https://github.com/material-components/material-components-android/blob/master/docs/components/BottomSheet.md
+     */
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAddEventBinding.inflate(inflater, container, false)
