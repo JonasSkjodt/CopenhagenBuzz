@@ -62,12 +62,15 @@ class MainActivity : AppCompatActivity() {
         val toolbar: MaterialToolbar = findViewById(R.id.topAppBar)
         setSupportActionBar(toolbar)
 
-        // Initialize isLoggedIn state from intent only if savedInstanceState is null (rotation bug, @see viewModel)
         if (savedInstanceState == null) {
+            // Initialize isLoggedIn state from intent only if savedInstanceState is null (rotation bug, @see viewModel)
             viewModel.isLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
-        }
 
-        setupUI()
+            //add our fragment
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.event_fragment_container, AddEventFragment())
+                .commit()
+        }
     }
 
     /**
@@ -111,113 +114,6 @@ class MainActivity : AppCompatActivity() {
             }
             // Add more cases for other menu items as we go to the next exercises
             else -> super.onOptionsItemSelected(item)
-        }
-    }
-    /**
-     * SetupUI() Initializes the UI components (viewBindings references our UI components)
-     */
-    private fun setupUI() {
-        val eventName = binding.contentMain.editTextEventName
-        val eventLocation = binding.contentMain.editTextEventLocation
-        val eventType = binding.contentMain.editEventType
-        val eventDescription = binding.contentMain.editEventDescription
-        val addEventButton = binding.contentMain.fabAddEvent
-        val eventDate = binding.contentMain.fieldEventDate
-
-        // Set up event listeners
-        with(eventDate) {
-            editText?.setOnClickListener {
-                showDateRangePicker()
-            }
-
-            setEndIconOnClickListener {
-                showDateRangePicker()
-            }
-        }
-
-        addEventButton.setOnClickListener {
-            if (eventName.text.toString().isNotEmpty() &&
-                eventLocation.text.toString().isNotEmpty() &&
-                eventDate.editText?.text.toString().isNotEmpty() &&
-                eventType.text.toString().isNotEmpty() &&
-                eventDescription.text.toString().isNotEmpty()) {
-
-                // Create a new event instance from the event data class
-                val event = Event(
-                    eventName = eventName.text.toString().trim(),
-                    eventLocation = eventLocation.text.toString().trim(),
-                    eventDate = eventDate.editText?.text.toString().trim() ?: "",
-                    eventType = eventType.text.toString().trim(),
-                    eventDescription = eventDescription.text.toString().trim()
-                )
-                showMessage(event)
-            }
-        }
-    }
-
-    /**
-     * The dateRangePicker method lets the user choose the dates for the event.
-     * The selection is set to the current month's beginning and today's date in UTC milliseconds.
-     *
-     * @see [MaterialDatePicker](https://github.com/material-components/material-components-android/blob/master/docs/components/DatePicker.md)
-     */
-    private fun showDateRangePicker() {
-        val dateRangePicker = MaterialDatePicker.Builder.dateRangePicker()
-            .setTitleText("Select dates")
-            .setSelection(
-                //pair is a container to ease passing around a tuple of two objects.
-                //https://developer.android.com/reference/kotlin/androidx/core/util/package-summary
-                Pair(
-                    MaterialDatePicker.thisMonthInUtcMilliseconds(),
-                    MaterialDatePicker.todayInUtcMilliseconds()
-                )
-            )
-            .build()
-
-        dateRangePicker.show(supportFragmentManager, "DATE_RANGE_PICKER")
-
-        // stitched together from
-        // https://www.geeksforgeeks.org/how-to-implement-date-range-picker-in-android/
-        dateRangePicker.addOnPositiveButtonClickListener {
-            selection:
-            Pair<Long, Long> ->
-            val startDate = Date(selection.first)
-            val endDate = Date(selection.second)
-            val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-
-            //format the picked dates
-            val formattedStartDate = formatter.format(startDate)
-            val formattedEndDate = formatter.format(endDate)
-
-            //shows the two dates in the right format
-            val dateRangeText = "$formattedStartDate - $formattedEndDate"
-
-            val eventDate = binding.contentMain.fieldEventDate
-            eventDate.editText?.setText(dateRangeText)
-        }
-    }
-
-    /**
-     * After the event has been added, the showMessage functions shows the message
-     * with the event info. It uses Android's Snackbar component to present the message
-     * to the user.
-     *
-     * @param event The Event object containing information about the event that has been added.
-     *
-     * @see [Snackbar](https://developer.android.com/reference/com/google/android/material/snackbar/Snackbar)
-     *
-     */
-    private fun showMessage(event: Event) {
-        // Convert the event details to a string message
-        val message = "Event created: \nName: ${event.eventName} " +
-                "Location: ${event.eventLocation} " +
-                "Date: ${event.eventDate} " +
-                "Type: ${event.eventType} " +
-                "Description: ${event.eventDescription}"
-
-        // Show Snackbar with the message
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_INDEFINITE).apply {
-            show()
         }
     }
 }
