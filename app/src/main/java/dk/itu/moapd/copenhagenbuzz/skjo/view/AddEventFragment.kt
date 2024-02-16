@@ -21,8 +21,11 @@ class AddEventFragment : Fragment(){
     private var _binding: FragmentAddEventBinding? = null
     private val binding get() = _binding!!
 
+    //An instance of the 'Event' class
+    //private val event: Event = Event("","","","","")
+
     // Initialize the ViewModel scoped to the Fragment
-    private val viewModel: MainViewModel by activityViewModels()
+    //private val viewModel: MainViewModel by activityViewModels()
 
     /**
      * onCreateView
@@ -145,7 +148,7 @@ class AddEventFragment : Fragment(){
                 "Description: ${event.eventDescription}"
 
         // Show Snackbar with the message
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_INDEFINITE).apply {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).apply {
             show()
         }
     }

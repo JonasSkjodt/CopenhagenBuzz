@@ -43,9 +43,6 @@ class MainActivity : AppCompatActivity() {
         private val TAG = MainActivity::class.qualifiedName
     }
 
-    //An instance of the 'Event' class
-    private val event: Event = Event("","","","","")
-
     /**
      * viewModel
      * viewModel sorts rotation data bug with Android Jetpack
