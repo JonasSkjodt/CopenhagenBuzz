@@ -146,7 +146,7 @@ https://developer.android.com/reference/androidx/constraintlayout/widget/Constra
         android:focusable="true"
         android:src="@drawable/baseline_add_24"
         android:contentDescription="@string/fab_add_event"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/field_event_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:tint="@android:color/black"/>
 
