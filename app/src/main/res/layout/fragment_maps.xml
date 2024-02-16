@@ -7,10 +7,18 @@
     android:fitsSystemWindows="true"
     tools:context=".view.MapsFragment">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mapssss"
+        android:contentDescription="google maps placeholder"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Maps"
+        android:textSize="24sp"
         android:gravity="center"
         android:layout_gravity="center" />
 

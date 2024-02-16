@@ -15,6 +15,8 @@ import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentTimelineBinding
 class TimelineFragment : Fragment() {
 
     private var _binding: FragmentTimelineBinding? = null
+
+    //!! will throw NullPointerException if the value is null.
     private val binding get() = _binding!!
 
     override fun onCreateView(
