@@ -23,8 +23,13 @@ class LoginActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupUI()
+    }
 
-        //kotlin's "with" attribute for easier listener code readability
+    /**
+     * SetupUI() Initializes the UI components and listeners (viewBindings references our UI components)
+     */
+    private fun setupUI() {
         with(binding) {
             userLoginButtonFront.setOnClickListener {
                 navigateToMainActivity( isLoggedIn = true)
@@ -34,9 +39,14 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-    // navigateToMainActivity
-    // uses Intent to navigate to main activity and sets boolean "isLoggedIn"
-    // @see intent https://developer.android.com/reference/kotlin/android/content/Intent
+    /**
+     * navigateToMainActivity
+     * uses Intent to navigate to main activity and sets boolean "isLoggedIn"
+     *
+     * @param Boolean whether the user is logged in or not
+     *
+     * @see intent https://developer.android.com/reference/kotlin/android/content/Intent
+     */
     private fun navigateToMainActivity(isLoggedIn: Boolean) {
         val intent = Intent(this, MainActivity::class.java).apply {
             putExtra("isLoggedIn", isLoggedIn)

@@ -12,9 +12,11 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import androidx.core.util.Pair
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
 import dk.itu.moapd.copenhagenbuzz.skjo.R
+import dk.itu.moapd.copenhagenbuzz.skjo.controller.MainViewModel
 import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
 
 /**
@@ -28,9 +30,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    //set the default for isLoggedIn as false
-    private var isLoggedIn: Boolean = false
-
     // A set of private constants used in this class.
     companion object {
         private val TAG = MainActivity::class.qualifiedName
@@ -38,6 +37,16 @@ class MainActivity : AppCompatActivity() {
 
     //An instance of the 'Event' class
     private val event: Event = Event("","","","","")
+
+    /**
+     * viewModel
+     * viewModel sorts rotation data bug with Android Jetpack
+     *
+     * @see slide3 https://learnit.itu.dk/pluginfile.php/383364/mod_resource/content/0/Slides%20%2303.pdf
+     */
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProvider(this)[MainViewModel::class.java]
+    }
 
     /**
      * Sets up the current layout, the view bindings, and listeners.
@@ -53,11 +62,14 @@ class MainActivity : AppCompatActivity() {
         val toolbar: MaterialToolbar = findViewById(R.id.topAppBar)
         setSupportActionBar(toolbar)
 
-        // Retrieve the 'isLoggedIn' value from the Intent
-        isLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
+        // Initialize isLoggedIn state from intent only if savedInstanceState is null (rotation bug, @see viewModel)
+        if (savedInstanceState == null) {
+            viewModel.isLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
+        }
 
         setupUI()
     }
+
     /**
      * Inflates the menu resource (defined in XML) into the Menu provided in the parameter.
      *
@@ -70,17 +82,14 @@ class MainActivity : AppCompatActivity() {
     }
     /**
      * Prepares the screen's standard options menu to be displayed.
-     * This is called right before the menu is shown, every time it is shown.
+     * It shows or hides the menu items based on whether the user is logged in or not.
      *
      * @param menu The options menu as last shown or first initialized by onCreateOptionsMenu().
      * @return Boolean we must return true for the menu to be displayed; if we return false it will not be shown.
      */
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        val isLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
-
-        // show or hide the menu items based on whether the user is logged in or not
-        menu.findItem(R.id.user_account_item)?.isVisible = !isLoggedIn
-        menu.findItem(R.id.guest_account_item)?.isVisible = isLoggedIn
+        menu.findItem(R.id.user_account_item)?.isVisible = !viewModel.isLoggedIn
+        menu.findItem(R.id.guest_account_item)?.isVisible = viewModel.isLoggedIn
 
         return super.onPrepareOptionsMenu(menu)
     }
