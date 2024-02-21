@@ -80,9 +80,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private  fun loadFragment(fragment: Fragment){
+    private fun loadFragment(fragment: Fragment){
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container,fragment)
+        // look into using the navController here (slide 4, page 43)
         transaction.commit()
     }
 
@@ -97,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         return true
     }
     /**
-     * Prepares the screen's standard options menu to be displayed.
+     * Prepares the screen's standard options menu to be displayed in the topAppBar.
      * It shows or hides the menu items based on whether the user is logged in or not.
      *
      * @param menu The options menu as last shown or first initialized by onCreateOptionsMenu().
@@ -110,7 +111,7 @@ class MainActivity : AppCompatActivity() {
         return super.onPrepareOptionsMenu(menu)
     }
     /**
-     * This method is called whenever an item in the options menu is selected.
+     * This method is called whenever an item in the options menu is selected in the topAppBar.
      * The default returns false.
      * (for now it only handles guests being able to click back to the login page)
      *

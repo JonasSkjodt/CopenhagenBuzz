@@ -1,17 +1,16 @@
 package dk.itu.moapd.copenhagenbuzz.skjo.view
 
 import androidx.fragment.app.Fragment
-
-/**
- * (1) one for displaying the next events
- * in the Copenhagen area
- */
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentTimelineBinding
 
+/**
+ * (1) one for displaying the next events
+ * in the Copenhagen area
+ */
 class TimelineFragment : Fragment() {
 
     private var _binding: FragmentTimelineBinding? = null
