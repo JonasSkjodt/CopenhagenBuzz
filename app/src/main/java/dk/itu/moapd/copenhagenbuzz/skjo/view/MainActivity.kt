@@ -10,6 +10,7 @@ import androidx.core.view.WindowCompat
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.ActivityMainBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dk.itu.moapd.copenhagenbuzz.skjo.R
@@ -25,7 +26,7 @@ import dk.itu.moapd.copenhagenbuzz.skjo.controller.MainViewModel
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
+    private lateinit var navController: NavController
     private lateinit var bottomNavigation : BottomNavigationView
 
     // A set of private constants used in this class.
@@ -50,14 +51,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //make sure the toolbar is there (header menu)
-        val toolbar: MaterialToolbar = findViewById(R.id.topAppBar)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.topAppBar)
 
-        bottomNavigation = findViewById(R.id.bottomNavigationView)
+        //initialize bottom navigation
+        bottomNavigation = binding.bottomNavigationView
 
         if (savedInstanceState == null) {
             viewModel.isLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
@@ -80,11 +82,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * loadFragment
+     * loadFragment is a method to perform an action to insert a fragment in the fragment_container
+     *
+     * @param fragment
+     */
+    //@see https://developer.android.com/guide/fragments/transactions
     private fun loadFragment(fragment: Fragment){
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container,fragment)
-        // look into using the navController here (slide 4, page 43)
-        transaction.commit()
+        val fragmentManager = supportFragmentManager.beginTransaction()
+        fragmentManager.replace(R.id.fragment_container,fragment)
+        fragmentManager.commit()
     }
 
     /**
