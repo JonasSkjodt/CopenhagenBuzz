@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+@see contraintlayout
+https://developer.android.com/reference/androidx/constraintlayout/widget/ConstraintLayout
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Event Name field -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_field_event_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/event_name"
+        app:startIconDrawable="@drawable/baseline_festival_24"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_event_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Event location field -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_field_event_location"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/event_location"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_field_event_name"
+        app:startIconDrawable="@drawable/baseline_add_location_alt_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_event_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Event date range picker -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/field_event_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/event_date"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_field_event_location"
+        app:startIconDrawable="@drawable/baseline_calendar_month_24">
+
+        <!--focusable="false" is to stop the user from typing the date in manually
+        and only chose it through the date picker-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_event_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:inputType="date" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Event type dropdown field with autocomplete-->
+    <!-- https://github.com/material-components/material-components-android/blob/master/docs/components/Menu.md -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/field_event_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:minHeight="50dp"
+        android:hint="@string/event_type"
+        app:endIconMode="dropdown_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/field_event_date"
+        app:startIconDrawable="@drawable/baseline_celebration_24"
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/edit_event_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="60dp"
+            app:simpleItems="@array/type_items"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Event description edit field -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/field_event_description"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/event_description"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/field_event_type">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_event_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textMultiLine"
+            android:maxLines="4"
+            android:gravity="top"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- add event to log floating button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/baseline_add_24"
+        android:contentDescription="@string/fab_add_event"
+        app:layout_constraintTop_toBottomOf="@id/field_event_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@android:color/black"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
