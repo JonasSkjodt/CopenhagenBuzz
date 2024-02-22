@@ -39,14 +39,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="some text"
+                    android:text="some text title"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="some text"
+                    android:text="some text secondary"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?android:attr/textColorSecondary"
                     />
@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="some text"
+                    android:text="some text supporting text"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?android:attr/textColorSecondary"
                     />
@@ -71,13 +71,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="some text"
+                    android:text="some text button 1"
                     style="?attr/borderlessButtonStyle"
                     />
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="some text"
+                    android:text="some text button 2"
                     style="?attr/borderlessButtonStyle"
                     />
             </LinearLayout>

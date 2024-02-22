@@ -32,6 +32,11 @@ class TimelineFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupUI()
+    }
+
+    private fun setupUI() {
+
     }
 
     // Make sure to clear the binding when the view is destroyed
