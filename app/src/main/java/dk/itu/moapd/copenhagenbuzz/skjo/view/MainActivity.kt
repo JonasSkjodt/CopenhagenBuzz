@@ -11,6 +11,9 @@ import dk.itu.moapd.copenhagenbuzz.skjo.databinding.ActivityMainBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dk.itu.moapd.copenhagenbuzz.skjo.R
@@ -58,41 +61,19 @@ class MainActivity : AppCompatActivity() {
         //make sure the toolbar is there (header menu)
         setSupportActionBar(binding.topAppBar)
 
-        //initialize bottom navigation
-        bottomNavigation = binding.bottomNavigationView
+        // Retrieve NavController from NavHostFragment
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.fragment_container) as NavHostFragment
+        navController = navHostFragment.navController
+
+        // Set up the BottomNavigationView with NavController
+        binding.bottomNavigationView.setupWithNavController(navController)
 
         if (savedInstanceState == null) {
             viewModel.isLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
-            loadFragment(AddEventFragment()) // Load default fragment
+            //loadFragment(AddEventFragment()) // Load default fragment
         }
 
-        bottomNavigation.setOnItemSelectedListener { item ->
-            val fragment = when (item.itemId) {
-                R.id.navigation_timeline -> TimelineFragment()
-                R.id.navigation_favorites -> FavoritesFragment()
-                R.id.navigation_maps -> MapsFragment()
-                R.id.navigation_calendar -> CalendarFragment()
-                else -> {
-                    Log.w(TAG, "Unknown navigation item selected")
-                    return@setOnItemSelectedListener false
-                }
-            }
-            loadFragment(fragment)
-            true
-        }
-    }
-
-    /**
-     * loadFragment
-     * loadFragment is a method to perform an action to insert a fragment in the fragment_container
-     *
-     * @param fragment
-     */
-    //@see https://developer.android.com/guide/fragments/transactions
-    private fun loadFragment(fragment: Fragment){
-        val fragmentManager = supportFragmentManager.beginTransaction()
-        fragmentManager.replace(R.id.fragment_container,fragment)
-        fragmentManager.commit()
     }
 
     /**

@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_timeline"
+        android:id="@+id/timelineFragment"
         android:icon="@drawable/baseline_view_timeline_24"
         android:title="@string/bottom_nav_timeline" />
 
     <item
-        android:id="@+id/navigation_favorites"
+        android:id="@+id/favoriteFragment"
         android:icon="@drawable/baseline_favorite_24"
         android:title="@string/bottom_nav_favorites" />
 
     <item
-        android:id="@+id/navigation_maps"
+        android:id="@+id/mapsFragment"
         android:icon="@drawable/baseline_map_24"
         android:title="@string/bottom_nav_map" />
 
     <item
-        android:id="@+id/navigation_calendar"
+        android:id="@+id/calendarFragment"
         android:icon="@drawable/baseline_calendar_today_24"
         android:title="@string/bottom_nav_calendar" />
 </menu>

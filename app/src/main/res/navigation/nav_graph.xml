@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/addeventFragment">
+
+    <fragment
+        android:id="@+id/addeventFragment"
+        android:name="dk.itu.moapd.copenhagenbuzz.skjo.view.AddEventFragment"
+        android:label="Add event" />
 
     <fragment
         android:id="@+id/timelineFragment"
