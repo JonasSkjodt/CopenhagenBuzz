@@ -16,8 +16,6 @@ import java.util.Locale
 
 class AddEventFragment : Fragment(){
 
-    //private var _binding: FragmentAddEventBinding? = null
-    //private val binding get() = _binding!!
     private var _binding: FragmentAddEventBinding? = null
     private val binding
         get() = requireNotNull(_binding) {

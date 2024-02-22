@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentFavoritesBinding
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentTimelineBinding
 
 /**
@@ -14,9 +15,10 @@ import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentTimelineBinding
 class TimelineFragment : Fragment() {
 
     private var _binding: FragmentTimelineBinding? = null
-
-    //!! will throw NullPointerException if the value is null.
-    private val binding get() = _binding!!
+    private val binding
+        get() = requireNotNull(_binding) {
+            "Cannot access binding because it is null. Is the view visible?"
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -10,12 +10,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentFavoritesBinding
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentMapsBinding
 
 class MapsFragment : Fragment() {
 
     private var _binding: FragmentMapsBinding? = null
-    private val binding get() = _binding!!
+    private val binding
+        get() = requireNotNull(_binding) {
+            "Cannot access binding because it is null. Is the view visible?"
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,

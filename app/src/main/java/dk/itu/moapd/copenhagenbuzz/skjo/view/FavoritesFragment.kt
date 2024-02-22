@@ -9,12 +9,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentCalendarBinding
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentFavoritesBinding
 
 class FavoritesFragment : Fragment() {
 
     private var _binding: FragmentFavoritesBinding? = null
-    private val binding get() = _binding!!
+    private val binding
+        get() = requireNotNull(_binding) {
+            "Cannot access binding because it is null. Is the view visible?"
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
