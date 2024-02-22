@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-    private lateinit var bottomNavigation : BottomNavigationView
 
     // A set of private constants used in this class.
     companion object {
@@ -71,7 +70,6 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             viewModel.isLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
-            //loadFragment(AddEventFragment()) // Load default fragment
         }
 
     }
