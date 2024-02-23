@@ -66,14 +66,16 @@
                     </LinearLayout>
 
                 <!-- Favorite the event placeholder -->
-                <ImageView
+                <CheckBox
+                    android:id="@+id/card_favorite_icon"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/baseline_favorite_24"
+                    android:button="@drawable/checkbox_favorite_heart"
                     android:contentDescription="favorite"
-                    app:tint="@color/blue" />
+                    app:tint="@color/purple"
+                    />
 
             </LinearLayout>
 
@@ -81,7 +83,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:src="@drawable/placeholderfestival"
+                android:src="@drawable/placeholderimg"
                 android:scaleType="centerCrop"
                 android:contentDescription="media image"
                 />
