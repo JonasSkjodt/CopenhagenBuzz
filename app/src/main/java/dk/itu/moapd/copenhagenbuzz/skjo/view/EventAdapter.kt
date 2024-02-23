@@ -2,6 +2,7 @@ package dk.itu.moapd.copenhagenbuzz.skjo.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.EventRowItemBinding
 import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
@@ -36,8 +37,15 @@ class EventAdapter(private var events: List<Event>) : RecyclerView.Adapter<Event
                 cardTimelineTextEventType.text = event.eventType
                 cardTimelineTextEventDate.text = event.eventDate
                 cardTimelineTextEventDescription.text = event.eventDescription
-                // Additional binding for other views here...
 
+                // favorite heart checkbox on materialcardview
+                cardFavoriteIcon.setOnCheckedChangeListener { _, isChecked ->
+                    if (isChecked) {
+                        Toast.makeText(binding.root.context, "Added to favorites", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(binding.root.context, "Removed from favorites", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
     }
