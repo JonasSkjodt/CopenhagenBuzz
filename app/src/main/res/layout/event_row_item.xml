@@ -13,7 +13,6 @@
         android:layout_marginBottom="16dp"
         app:cardElevation="2dp"
         app:cardCornerRadius="8dp"
-        app:cardBackgroundColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -82,7 +81,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:src="@drawable/mapssss"
+                android:src="@drawable/placeholderfestival"
                 android:scaleType="centerCrop"
                 android:contentDescription="media image"
                 />
