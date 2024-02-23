@@ -31,13 +31,13 @@ class EventAdapter(private var events: List<Event>) : RecyclerView.Adapter<Event
 
         fun bind(event: Event) {
             with(binding) {
-                textEventTitle.text = event.eventName
-                textEventLocation.text = event.eventLocation
-                textEventDate.text = event.eventDate
-                // Additional binding for other views can be added here
+                cardTimelineTextEventName.text = event.eventName
+                cardTimelineTextEventLocation.text = event.eventLocation
+                cardTimelineTextEventType.text = event.eventType
+                cardTimelineTextEventDate.text = event.eventDate
+                cardTimelineTextEventDescription.text = event.eventDescription
+                // Additional binding for other views here...
 
-                // Example: If button_edit_event should be visible for the event owner
-                // buttonEditEvent.visibility = if (event.isOwner) View.VISIBLE else View.GONE
             }
         }
     }

@@ -18,7 +18,8 @@
         android:layout_height="wrap_content"
         android:elevation="16dp"
         android:fitsSystemWindows="true"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/lightgray">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"

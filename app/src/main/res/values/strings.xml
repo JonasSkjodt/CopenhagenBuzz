@@ -14,4 +14,5 @@
     <string name="bottom_nav_favorites">Favorites</string>
     <string name="bottom_nav_map">Map</string>
     <string name="bottom_nav_calendar">Calendar</string>
+    <string name="event_favorite">Favorite event</string>
 </resources>
