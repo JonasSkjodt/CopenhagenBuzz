@@ -1,4 +1,4 @@
-package dk.itu.moapd.copenhagenbuzz.skjo.controller
+package dk.itu.moapd.copenhagenbuzz.skjo.model
 
 import androidx.lifecycle.ViewModel
 

@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentAddEventBinding
-import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentFavoritesBinding
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentTimelineBinding
 import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
 
@@ -72,7 +70,12 @@ class TimelineFragment : Fragment() {
             Event("Event 4", "Location 4", "Date 4", "Type 4", "Description 4"),
             Event("Event 5", "Location 5", "Date 5", "Type 5", "Description 5")
         )
-        eventAdapter.updateEvents(testData)
+
+        // Create a list to hold 50 events, repeating the test data
+        val repeatedTestData = List(50) { i -> testData[i % testData.size] }
+
+        // Update the adapter with the repeated test data
+        eventAdapter.updateEvents(repeatedTestData)
     }
 
 
