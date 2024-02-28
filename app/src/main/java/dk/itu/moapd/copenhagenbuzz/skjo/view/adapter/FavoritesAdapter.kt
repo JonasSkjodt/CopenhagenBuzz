@@ -1,4 +1,4 @@
-package dk.itu.moapd.copenhagenbuzz.skjo.view
+package dk.itu.moapd.copenhagenbuzz.skjo.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

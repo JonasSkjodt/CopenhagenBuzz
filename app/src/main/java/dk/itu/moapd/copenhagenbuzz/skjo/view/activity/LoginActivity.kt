@@ -1,4 +1,4 @@
-package dk.itu.moapd.copenhagenbuzz.skjo.view
+package dk.itu.moapd.copenhagenbuzz.skjo.view.activity
 
 import android.content.Intent
 import android.os.Bundle

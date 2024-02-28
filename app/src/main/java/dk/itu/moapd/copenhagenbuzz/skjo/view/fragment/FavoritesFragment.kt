@@ -1,4 +1,4 @@
-package dk.itu.moapd.copenhagenbuzz.skjo.view.fragments
+package dk.itu.moapd.copenhagenbuzz.skjo.view.fragment
 
 import androidx.fragment.app.Fragment
 
@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentFavoritesBinding
 import dk.itu.moapd.copenhagenbuzz.skjo.model.DataViewModel
-import dk.itu.moapd.copenhagenbuzz.skjo.view.FavoritesAdapter
+import dk.itu.moapd.copenhagenbuzz.skjo.view.adapter.FavoritesAdapter
 
 class FavoritesFragment : Fragment() {
 

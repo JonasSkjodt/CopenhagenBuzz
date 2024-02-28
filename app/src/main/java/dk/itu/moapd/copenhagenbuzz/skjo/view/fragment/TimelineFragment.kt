@@ -1,4 +1,4 @@
-package dk.itu.moapd.copenhagenbuzz.skjo.view.fragments
+package dk.itu.moapd.copenhagenbuzz.skjo.view.fragment
 
 import androidx.fragment.app.Fragment
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentTimelineBinding
 import dk.itu.moapd.copenhagenbuzz.skjo.model.DataViewModel
-import dk.itu.moapd.copenhagenbuzz.skjo.view.EventAdapter
+import dk.itu.moapd.copenhagenbuzz.skjo.view.adapter.EventAdapter
 
 /**
  * (1) one for displaying the next events
@@ -38,7 +38,7 @@ class TimelineFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // LiveData containing the list of events
+        // LiveData containing the list of events (this must be set as the same in timeline fragment and favorite fragment)
         viewModel = ViewModelProvider(requireActivity()).get(DataViewModel::class.java)
 
         eventAdapter = EventAdapter(emptyList(), requireContext(), viewModel)

@@ -1,21 +1,20 @@
-package dk.itu.moapd.copenhagenbuzz.skjo.view.fragments
+package dk.itu.moapd.copenhagenbuzz.skjo.view.fragment
 
 import androidx.fragment.app.Fragment
 
 /**
- * a calendar view of events
+ * (3) a third fragment with Google Maps to display event locations
+ * in a map
  */
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentAddEventBinding
-import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentCalendarBinding
+import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentMapsBinding
 
-class CalendarFragment : Fragment() {
+class MapsFragment : Fragment() {
 
-    private var _binding: FragmentCalendarBinding? = null
+    private var _binding: FragmentMapsBinding? = null
     private val binding
         get() = requireNotNull(_binding) {
             "Cannot access binding because it is null. Is the view visible?"
@@ -27,7 +26,7 @@ class CalendarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment using view binding
-        _binding = FragmentCalendarBinding.inflate(inflater, container, false)
+        _binding = FragmentMapsBinding.inflate(inflater, container, false)
         return binding.root
     }
 

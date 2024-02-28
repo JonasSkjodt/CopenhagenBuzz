@@ -1,4 +1,4 @@
-package dk.itu.moapd.copenhagenbuzz.skjo.view.fragments
+package dk.itu.moapd.copenhagenbuzz.skjo.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
