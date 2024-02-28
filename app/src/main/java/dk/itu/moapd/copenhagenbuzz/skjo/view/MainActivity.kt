@@ -2,22 +2,17 @@ package dk.itu.moapd.copenhagenbuzz.skjo.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.ActivityMainBinding
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import dk.itu.moapd.copenhagenbuzz.skjo.R
-import dk.itu.moapd.copenhagenbuzz.skjo.controller.MainViewModel
+import dk.itu.moapd.copenhagenbuzz.skjo.model.MainViewModel
 
 /**
  * The MainActivity class handles user interactions (like events) and initializes the UI in the app

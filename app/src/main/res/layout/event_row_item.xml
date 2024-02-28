@@ -1,89 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
+    <!-- Material CardView for Event Information -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        style="?attr/materialCardViewElevatedStyle">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Media -->
+            <!-- weightsum is to make sure everything fits in the top_card_bar-->
+            <LinearLayout
+                android:id="@+id/top_card_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <!-- Placeholder image of event creator -->
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_marginEnd="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/placeholderletter2"
+                    android:contentDescription="username" />
+
+                    <!-- Start event name and event type -->
+                    <LinearLayout
+                        android:id="@+id/top_event_name_and_type"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/card_timeline_text_event_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/event_name"
+                            android:textAppearance="?attr/textAppearanceHeadline6" />
+
+                        <TextView
+                            android:id="@+id/card_timeline_text_event_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/event_type"
+                            android:textAppearance="?attr/textAppearanceBodyMedium" />
+                    </LinearLayout>
+
+                <!-- Favorite the event placeholder -->
+                <CheckBox
+                    android:id="@+id/card_favorite_icon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_gravity="center_vertical"
+                    android:button="@drawable/checkbox_favorite_heart"
+                    android:contentDescription="favorite"
+                    app:tint="@color/purple"
+                    />
+
+            </LinearLayout>
+
+            <!-- Event Image -->
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="194dp"
-                app:srcCompat="@drawable/mapssss"
+                android:layout_height="160dp"
+                android:src="@drawable/placeholderimg"
                 android:scaleType="centerCrop"
-                android:contentDescription="some text"
+                android:contentDescription="media image"
                 />
 
+            <!-- event location, date, description -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Title, secondary and supporting text -->
                 <TextView
+                    android:id="@+id/card_timeline_text_event_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="some text"
-                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    android:text="@string/event_location"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
                     />
                 <TextView
+                    android:id="@+id/card_timeline_text_event_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="some text"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                    android:textColor="?android:attr/textColorSecondary"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/event_date"
+                    android:textAppearance="?attr/textAppearanceCaption"
                     />
                 <TextView
+                    android:id="@+id/card_timeline_text_event_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="some text"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                    android:textColor="?android:attr/textColorSecondary"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/event_date"
+                    android:textAppearance="?attr/textAppearanceCaption"
                     />
-
             </LinearLayout>
 
-            <!-- Buttons -->
+            <!-- event buttons -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:layout_margin="8dp">
+
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/card_timeline_button_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="some text"
-                    style="?attr/borderlessButtonStyle"
+                    android:layout_marginEnd="6dp"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:text="Edit"
                     />
+
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/card_timeline_button_share"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="some text"
-                    style="?attr/borderlessButtonStyle"
+                    android:text="Info"
                     />
             </LinearLayout>
 
         </LinearLayout>
-
     </com.google.android.material.card.MaterialCardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

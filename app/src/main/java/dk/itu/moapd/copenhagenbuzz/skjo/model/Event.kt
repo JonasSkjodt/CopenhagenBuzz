@@ -15,7 +15,7 @@ package dk.itu.moapd.copenhagenbuzz.skjo.model
 data class Event(
     var eventName: String,
     var eventLocation: String,
-    var eventDate: String, //date
-    var eventType: String, //eventType
+    var eventDate: String,
+    var eventType: String,
     var eventDescription: String
 )
