@@ -39,7 +39,7 @@ class TimelineFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // LiveData containing the list of events
-        viewModel = ViewModelProvider(this).get(DataViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(DataViewModel::class.java)
 
         eventAdapter = EventAdapter(emptyList(), requireContext(), viewModel)
         binding.listView.adapter = eventAdapter

@@ -1,5 +1,6 @@
 package dk.itu.moapd.copenhagenbuzz.skjo.model
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -53,14 +54,26 @@ class DataViewModel : ViewModel() {
     }
 
     fun addFavorite(event: Event) {
-        //add an event to the favorites list
+        // Log statement to indicate the method is called
+        Log.d("DataViewModel", "Add favorite event: ${event.eventName}")
+
         val currentFavorites = _favorites.value ?: listOf()
-        _favorites.value = currentFavorites + event
+        if (!currentFavorites.contains(event)) {
+            val updatedFavorites = currentFavorites + event
+            _favorites.postValue(updatedFavorites)
+
+            // Log statement to show the list after adding an event
+            Log.d("DataViewModel", "Updated favorites: ${updatedFavorites.joinToString { it.eventName }}")
+        }
     }
 
     fun removeFavorite(event: Event) {
         //remove an event from the favorites list
         val currentFavorites = _favorites.value ?: listOf()
-        _favorites.value = currentFavorites - event
+        _favorites.postValue(currentFavorites - event)
+    }
+
+    fun isFavorite(event: Event): Boolean {
+        return _favorites.value?.contains(event) ?: false
     }
 }
