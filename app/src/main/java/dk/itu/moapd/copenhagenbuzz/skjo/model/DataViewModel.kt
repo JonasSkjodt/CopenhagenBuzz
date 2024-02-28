@@ -9,14 +9,21 @@ import kotlinx.coroutines.launch
 
 class DataViewModel : ViewModel() {
 
+    //timeline listview
     // The internal MutableLiveData that stores the list of events
     private val _events = MutableLiveData<List<Event>>()
-
     // The external LiveData interface to the list of events
     val events: LiveData<List<Event>> = _events
 
+    //favorites recycleview
+    private val _favorites = MutableLiveData<List<Event>>()
+    var favorites: LiveData<List<Event>> = _favorites
+
     init {
+        //events data
         fetchEvents()
+        //favorites data
+        fetchFavorites()
     }
 
     // Asynchronously fetches the list of events (coroutines)
@@ -38,5 +45,22 @@ class DataViewModel : ViewModel() {
             // Update the adapter with the test data
             _events.postValue(repeatedTestData)
         }
+    }
+    //favorites
+    private fun fetchFavorites() {
+        //should be empty in the start
+        _favorites.value = listOf()
+    }
+
+    fun addFavorite(event: Event) {
+        //add an event to the favorites list
+        val currentFavorites = _favorites.value ?: listOf()
+        _favorites.value = currentFavorites + event
+    }
+
+    fun removeFavorite(event: Event) {
+        //remove an event from the favorites list
+        val currentFavorites = _favorites.value ?: listOf()
+        _favorites.value = currentFavorites - event
     }
 }
