@@ -14,6 +14,7 @@ class DataViewModel : ViewModel() {
     // The internal MutableLiveData that stores the list of events
     private val _events = MutableLiveData<List<Event>>()
     // The external LiveData interface to the list of events
+    // @see https://developer.android.com/topic/libraries/architecture/livedata
     val events: LiveData<List<Event>> = _events
 
     //favorites recycleview
@@ -73,7 +74,9 @@ class DataViewModel : ViewModel() {
         _favorites.postValue(currentFavorites - event)
     }
 
+    /*
+    //TODO the checkbox needs to stay checked if the user has favorited an event, leaves the fragment, and comes back again. Currently it does not stay checked.
     fun isFavorite(event: Event): Boolean {
         return _favorites.value?.contains(event) ?: false
-    }
+    }*/
 }

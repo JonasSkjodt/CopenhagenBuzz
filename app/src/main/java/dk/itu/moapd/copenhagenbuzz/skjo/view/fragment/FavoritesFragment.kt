@@ -40,7 +40,7 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize the ViewModel
+        // Initialize the ViewModel (this must be set as the same in timeline fragment and favorite fragment)
         viewModel = ViewModelProvider(requireActivity()).get(DataViewModel::class.java)
 
         // Initialize the adapter with an empty list or initial data
@@ -55,7 +55,7 @@ class FavoritesFragment : Fragment() {
         //liveData of favorites from ViewModel
         viewModel.favorites.observe(viewLifecycleOwner) { favoriteEvents ->
             // Update the adapter with the repeated test data
-            //TODO the list isn't being updated with the favorited events
+            //cehck if it actually populates the list
             Log.d("FavoritesFragment", "Observed favorites: ${favoriteEvents.joinToString { it.eventName }}")
             favoritesAdapter.updateEvents(favoriteEvents)
         }

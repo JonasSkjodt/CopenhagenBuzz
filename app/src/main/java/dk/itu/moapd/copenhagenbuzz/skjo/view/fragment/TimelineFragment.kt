@@ -38,7 +38,7 @@ class TimelineFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // LiveData containing the list of events (this must be set as the same in timeline fragment and favorite fragment)
+        // Initialize the ViewModel (this must be set as the same in timeline fragment and favorite fragment)
         viewModel = ViewModelProvider(requireActivity()).get(DataViewModel::class.java)
 
         eventAdapter = EventAdapter(emptyList(), requireContext(), viewModel)
