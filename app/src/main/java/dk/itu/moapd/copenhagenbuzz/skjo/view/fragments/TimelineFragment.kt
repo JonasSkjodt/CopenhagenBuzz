@@ -32,10 +32,6 @@ class TimelineFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentTimelineBinding.inflate(inflater, container, false)
-        // Initialize EventAdapter with an empty list
-        eventAdapter = EventAdapter(emptyList(), requireContext())
-        // Set the EventAdapter to the ListView.
-        binding.listView.adapter = eventAdapter
         return binding.root
     }
 
@@ -44,6 +40,9 @@ class TimelineFragment : Fragment() {
 
         // LiveData containing the list of events
         viewModel = ViewModelProvider(this).get(DataViewModel::class.java)
+
+        eventAdapter = EventAdapter(emptyList(), requireContext(), viewModel)
+        binding.listView.adapter = eventAdapter
 
         viewModel.events.observe(viewLifecycleOwner) { events ->
             // Update the EventAdapter with the new events
