@@ -1,4 +1,4 @@
-package dk.itu.moapd.copenhagenbuzz.skjo.view
+package dk.itu.moapd.copenhagenbuzz.skjo.view.fragments
 
 import androidx.fragment.app.Fragment
 import android.os.Bundle
@@ -6,10 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentTimelineBinding
 import dk.itu.moapd.copenhagenbuzz.skjo.model.DataViewModel
-import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
+import dk.itu.moapd.copenhagenbuzz.skjo.view.EventAdapter
 
 /**
  * (1) one for displaying the next events

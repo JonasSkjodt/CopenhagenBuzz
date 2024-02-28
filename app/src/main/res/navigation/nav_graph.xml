@@ -6,27 +6,27 @@
 
     <fragment
         android:id="@+id/addeventFragment"
-        android:name="dk.itu.moapd.copenhagenbuzz.skjo.view.AddEventFragment"
+        android:name="dk.itu.moapd.copenhagenbuzz.skjo.view.fragments.AddEventFragment"
         android:label="Add event" />
 
     <fragment
         android:id="@+id/timelineFragment"
-        android:name="dk.itu.moapd.copenhagenbuzz.skjo.view.TimelineFragment"
+        android:name="dk.itu.moapd.copenhagenbuzz.skjo.view.fragments.TimelineFragment"
         android:label="Timeline" />
 
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="dk.itu.moapd.copenhagenbuzz.skjo.view.FavoritesFragment"
+        android:name="dk.itu.moapd.copenhagenbuzz.skjo.view.fragments.FavoritesFragment"
         android:label="Favorites" />
 
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="dk.itu.moapd.copenhagenbuzz.skjo.view.MapsFragment"
+        android:name="dk.itu.moapd.copenhagenbuzz.skjo.view.fragments.MapsFragment"
         android:label="Maps" />
 
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="dk.itu.moapd.copenhagenbuzz.skjo.view.CalendarFragment"
+        android:name="dk.itu.moapd.copenhagenbuzz.skjo.view.fragments.CalendarFragment"
         android:label="Calendar" />
 
 </navigation>
