@@ -2,14 +2,12 @@ package dk.itu.moapd.copenhagenbuzz.skjo.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DataViewModel(
-    private val savedStateHandle: SavedStateHandle) : ViewModel() {
+class DataViewModel : ViewModel() {
 
     // The internal MutableLiveData that stores the list of events
     private val _events = MutableLiveData<List<Event>>()
@@ -34,8 +32,11 @@ class DataViewModel(
                 Event("Event 4", "Location 4", "Date 4", "Type 4", "Description 4"),
                 Event("Event 5", "Location 5", "Date 5", "Type 5", "Description 5")
             )
-            // Update LiveData with the fetched events
-            _events.postValue(testData)
+            // Create a list to hold 50 events, repeating the test data
+            val repeatedTestData = List(50) { i -> testData[i % testData.size] }
+
+            // Update the adapter with the test data
+            _events.postValue(repeatedTestData)
         }
     }
 }
