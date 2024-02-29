@@ -32,17 +32,25 @@ class EventAdapter(
         }
 
         val event = getItem(position) as Event
+
         with(binding) {
             cardTimelineTextEventName.text = event.eventName
             cardTimelineTextEventLocation.text = event.eventLocation
             cardTimelineTextEventType.text = event.eventType
             cardTimelineTextEventDate.text = event.eventDate
             cardTimelineTextEventDescription.text = event.eventDescription
+            //cardTimelineTextEventImage.text = event.eventImage
 
-            // favorite heart checkbox on materialcardview
-            //cardFavoriteIcon.isChecked = viewModel.isFavorite(event)
+            // Detach any existing listeners to avoid unwanted behavior
+            // If the setOnCheckedChangeListener is not set to null first, a bug displays when scrolling through the listview because the favorited items gets recycled to display a new item
+            //i.e, if the setOnCheckedChangeListener is not set to null initially before reuse
+            //tje recycled view could have the old listener attached
+            //so we make sure the checkbox is only tied to the specific data of the item being displayed
+            cardFavoriteIcon.setOnCheckedChangeListener(null)
+
+            //favorite heart checkbox on materialcardview
+            cardFavoriteIcon.isChecked = viewModel.isFavorite(event)
             cardFavoriteIcon.setOnCheckedChangeListener { _, isChecked ->
-                //val event = getItem(position) as Event
                 if (isChecked) {
                     viewModel.addFavorite(event)
                     Toast.makeText(binding.root.context, "Added to favorites", Toast.LENGTH_SHORT).show()

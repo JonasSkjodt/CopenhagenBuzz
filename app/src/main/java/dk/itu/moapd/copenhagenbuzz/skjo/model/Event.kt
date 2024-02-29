@@ -18,4 +18,5 @@ data class Event(
     var eventDate: String,
     var eventType: String,
     var eventDescription: String
+    //var eventImage: String
 )

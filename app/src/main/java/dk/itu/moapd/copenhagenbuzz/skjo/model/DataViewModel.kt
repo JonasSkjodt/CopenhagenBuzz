@@ -5,8 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.javafaker.Faker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 
 class DataViewModel : ViewModel() {
 
@@ -32,7 +34,9 @@ class DataViewModel : ViewModel() {
     private fun fetchEvents() {
         //coroutine
         //@see https://developer.android.com/topic/libraries/architecture/coroutines
-        viewModelScope.launch(Dispatchers.IO) {
+
+        /* use the homebrew testData*/
+        /*  viewModelScope.launch(Dispatchers.IO) {
             //TODO change this to faker or just do the database later
             val testData = listOf(
                 Event("Cph Festival", "Copenhagen Downtown", "Fri, Feb 02 2024 - Sun, Feb 25 2024", "Festival", "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."),
@@ -45,7 +49,27 @@ class DataViewModel : ViewModel() {
             val repeatedTestData = List(50) { i -> testData[i % testData.size] }
 
             // Update the adapter with the test data
-            _events.postValue(repeatedTestData)
+            _events.postValue(repeatedTestData)*/
+
+            /* or use faker instead*/
+            // Initialize the Faker instance with a fixed random seed for reproducibility
+                val faker = Faker()
+
+                viewModelScope.launch(Dispatchers.IO) {
+                    val fakeEvents = List(20) {
+                        Event(
+                            eventName = faker.rockBand().name(), // Using a rock band name as a placeholder for event names
+                            eventLocation = "${faker.address().cityName()}, ${faker.address().country()}",
+                            eventDate = faker.date().future(365, TimeUnit.DAYS).toString(), // Random future date within the next year
+                            eventType = faker.book().genre(), // Using book genre as a placeholder for event types
+                            eventDescription = faker.lorem().paragraph()
+                            //eventImage = "https://picsum.photos/seed/$it/400/194"
+                        )
+                    }
+
+            // Update the LiveData with the fake events data
+            _events.postValue(fakeEvents)
+
         }
     }
     //favorites
