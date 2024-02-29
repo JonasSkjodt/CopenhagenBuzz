@@ -32,10 +32,10 @@ class FavoritesAdapter(private var events: List<Event>) : RecyclerView.Adapter<F
         fun bind(event: Event) {
             with(binding) {
                 cardTimelineTextEventName.text = event.eventName
-                cardTimelineTextEventLocation.text = event.eventLocation
+                //cardTimelineTextEventLocation.text = event.eventLocation
                 cardTimelineTextEventType.text = event.eventType
-                cardTimelineTextEventDate.text = event.eventDate
-                cardTimelineTextEventDescription.text = event.eventDescription
+                //cardTimelineTextEventDate.text = event.eventDate
+                //cardTimelineTextEventDescription.text = event.eventDescription
             }
         }
     }
