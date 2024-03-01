@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Toast
+import com.squareup.picasso.Picasso
+import dk.itu.moapd.copenhagenbuzz.skjo.R
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.EventRowItemBinding
 import dk.itu.moapd.copenhagenbuzz.skjo.model.DataViewModel
 import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
@@ -39,13 +41,16 @@ class EventAdapter(
             cardTimelineTextEventType.text = event.eventType
             cardTimelineTextEventDate.text = event.eventDate
             cardTimelineTextEventDescription.text = event.eventDescription
-            //cardTimelineTextEventImage.text = event.eventImage
+            Picasso.get()
+                .load(event.eventImage) // contains the URL to the image
+                .into(cardTimelineTextEventImage) // into the xml imageview
 
             // Detach any existing listeners to avoid unwanted behavior
-            // If the setOnCheckedChangeListener is not set to null first, a bug displays when scrolling through the listview because the favorited items gets recycled to display a new item
-            //i.e, if the setOnCheckedChangeListener is not set to null initially before reuse
-            //tje recycled view could have the old listener attached
-            //so we make sure the checkbox is only tied to the specific data of the item being displayed
+            // If the setOnCheckedChangeListener is not set to null first, a bug shows, where other events are favorited (without having been favorited)
+            // This is because when scrolling through the listview, the favorited items gets recycled to display a new item
+            // this means, if the setOnCheckedChangeListener is not set to null initially before reuse
+            // tje recycled view could have the old listener attached
+            // so we make sure the checkbox is only tied to the specific data of the item being displayed each time an event is loaded
             cardFavoriteIcon.setOnCheckedChangeListener(null)
 
             //favorite heart checkbox on materialcardview

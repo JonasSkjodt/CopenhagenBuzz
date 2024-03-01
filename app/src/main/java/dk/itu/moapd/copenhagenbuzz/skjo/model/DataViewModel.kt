@@ -62,8 +62,8 @@ class DataViewModel : ViewModel() {
                             eventLocation = "${faker.address().cityName()}, ${faker.address().country()}",
                             eventDate = faker.date().future(365, TimeUnit.DAYS).toString(), // Random future date within the next year
                             eventType = faker.book().genre(), // Using book genre as a placeholder for event types
-                            eventDescription = faker.lorem().paragraph()
-                            //eventImage = "https://picsum.photos/seed/$it/400/194"
+                            eventDescription = faker.lorem().paragraph(),
+                            eventImage = "https://picsum.photos/seed/$it/400/194"
                         )
                     }
 
@@ -98,8 +98,12 @@ class DataViewModel : ViewModel() {
         _favorites.postValue(currentFavorites - event)
     }
 
+    /**
+     * isFavorite
+     * checks if the event is favorited or not
+     * @param event:Event
+     */
 
-    //TODO the checkbox needs to stay checked if the user has favorited an event, leaves the fragment, and comes back again. Currently it does not stay checked.
     fun isFavorite(event: Event): Boolean {
         return _favorites.value?.contains(event) ?: false
     }

@@ -51,6 +51,7 @@ class AddEventFragment : Fragment(){
         val addEventButton = binding.fabAddEvent
         val eventDate = binding.fieldEventDate
 
+
         // Set up event listeners
         with(eventDate) {
             editText?.setOnClickListener {
@@ -75,7 +76,8 @@ class AddEventFragment : Fragment(){
                     eventLocation = eventLocation.text.toString().trim(),
                     eventDate = eventDate.editText?.text.toString().trim(),
                     eventType = eventType.text.toString().trim(),
-                    eventDescription = eventDescription.text.toString().trim()
+                    eventDescription = eventDescription.text.toString().trim(),
+                    eventImage = eventDescription.text.toString().trim()
                 )
                 showMessage(event)
             }

@@ -87,6 +87,7 @@
 
             <!-- Event Image -->
             <ImageView
+                android:id="@+id/card_timeline_text_event_image"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:src="@drawable/placeholderimg"
