@@ -12,6 +12,9 @@ import java.util.concurrent.TimeUnit
 
 class DataViewModel : ViewModel() {
 
+    //loader showing for slow faker data
+    val isLoading = MutableLiveData<Boolean>()
+
     //timeline listview
     // The internal MutableLiveData that stores the list of events
     private val _events = MutableLiveData<List<Event>>()
@@ -30,25 +33,32 @@ class DataViewModel : ViewModel() {
         fetchFavorites()
     }
 
-    // Asynchronously fetches the list of events (coroutines)
-    //@see https://developer.android.com/topic/libraries/architecture/coroutines
+    /**
+     * Asynchronously fetches the list of events (coroutines)
+     * @see [Coroutines](https://developer.android.com/topic/libraries/architecture/coroutines)
+     */
     private fun fetchEvents() {
+        // Start loading
+        isLoading.postValue(true)
         // Initialize the Faker instance with a fixed random seed for reproducibility
         // @see https://github.com/fabricionarcizo/moapd2024/blob/main/lecture05/05-1_RecyclerView/app/src/main/java/dk/itu/moapd/recyclerview/MainFragment.kt
         val faker = Faker()
-            viewModelScope.launch(Dispatchers.IO) {
-                val fakeEvents = List(20) {
-                    Event(
-                        eventName = faker.rockBand().name(), // Using a rock band name as a placeholder for event names
-                        eventLocation = "${faker.address().cityName()}, ${faker.address().country()}",
-                        eventDate = faker.date().future(365, TimeUnit.DAYS).toString(), // Random future date within the next year
-                        eventType = faker.book().genre(), // Using book genre as a placeholder for event types
-                        eventDescription = faker.lorem().paragraph(),
-                        eventImage = "https://picsum.photos/seed/$it/400/194"
-                    )
-                }
-            // Update the LiveData with the fake events data
-            _events.postValue(fakeEvents)
+        viewModelScope.launch(Dispatchers.IO) {
+            val fakeEvents = List(50) {
+                Event(
+                    eventName = faker.rockBand().name(),
+                    eventLocation = "${faker.address().cityName()}, ${faker.address().country()}",
+                    eventDate = faker.date().future(365, TimeUnit.DAYS).toString(),
+                    eventType = faker.book().genre(),
+                    eventDescription = faker.lorem().paragraph(),
+                    eventImage = "https://picsum.photos/seed/$it/400/194"
+                )
+            }
+        // Data has been fetched, post to LiveData
+        _events.postValue(fakeEvents)
+
+        // Stop loading when faker shows its data
+        isLoading.postValue(false)
         }
     }
     //favorites
@@ -63,7 +73,7 @@ class DataViewModel : ViewModel() {
 
         val currentFavorites = _favorites.value ?: listOf()
         if (!currentFavorites.contains(event)) {
-            val updatedFavorites = currentFavorites + event
+            val updatedFavorites = (currentFavorites + event)
             _favorites.postValue(updatedFavorites)
 
             // Log statement to show the list after adding an event
@@ -78,11 +88,14 @@ class DataViewModel : ViewModel() {
     }
 
     /**
-     * isFavorite
-     * checks if the event is favorited or not
-     * @param event:Event
+     * Checks if the given event is marked as a favorite.
+     *
+     * This function examines the list of favorited events and determines whether
+     * the provided event is contained within that list.
+     *
+     * @param event The event to check for favorite status.
+     * @return True if the event is currently marked as a favorite, false otherwise.
      */
-
     fun isFavorite(event: Event): Boolean {
         return _favorites.value?.contains(event) ?: false
     }

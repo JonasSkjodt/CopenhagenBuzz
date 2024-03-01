@@ -8,7 +8,6 @@ import android.widget.BaseAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.squareup.picasso.Picasso
-import dk.itu.moapd.copenhagenbuzz.skjo.R
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.EventRowItemBinding
 import dk.itu.moapd.copenhagenbuzz.skjo.model.DataViewModel
 import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
@@ -42,29 +41,30 @@ class EventAdapter(
             cardTimelineTextEventType.text = event.eventType
             cardTimelineTextEventDate.text = event.eventDate
             cardTimelineTextEventDescription.text = event.eventDescription
+            //use picasso implementation to use an image url and insert it into the imageview
             Picasso.get()
                 .load(event.eventImage) // load the URL to the image
                 .into(cardTimelineTextEventImage) // and then insert it into the xml imageview
-
             //card favorite checkbox
             cardFavoriteIcon(binding,event)
             //card button listeners
             editButtonListener(binding)
             infoButtonListener(binding,event)
-
         }
         return binding.root
     }
 
     /**
      * Handles the logic for the event favorite
+     * @param binding
+     * @param event
      */
     private fun cardFavoriteIcon(binding: EventRowItemBinding, event: Event) {
         // Detach any existing listeners to avoid unwanted behavior
         // If the setOnCheckedChangeListener is not set to null first, a bug shows where other events are favorited (without having been set to favorite by the user)
         // This is because when scrolling through the listview, the favorited items gets recycled to display a new item
         // this means, if the setOnCheckedChangeListener is not set to null initially before reuse
-        // tje recycled view could have the old listener attached
+        // the recycled view could have the old listener attached
         // so make sure the checkbox is only tied to the specific data of the item being displayed each time an event is loaded
         binding.cardFavoriteIcon.setOnCheckedChangeListener(null)
 
@@ -84,8 +84,8 @@ class EventAdapter(
     }
 
     /**
-     * info button on the material card view
-     * shows the full event description
+     * edit button on the material card view
+     * shows a placeholder text
      * @see [Dialogs](https://developer.android.com/develop/ui/views/components/dialogs)
      */
     private fun editButtonListener(binding: EventRowItemBinding) {
@@ -103,7 +103,6 @@ class EventAdapter(
     /**
      * info button on the material card view
      * shows the full event description
-     * @see [Dialogs](https://developer.android.com/develop/ui/views/components/dialogs)
      */
     private fun infoButtonListener(binding: EventRowItemBinding, event: Event) {
         binding.cardTimelineButtonInfo.setOnClickListener { view ->

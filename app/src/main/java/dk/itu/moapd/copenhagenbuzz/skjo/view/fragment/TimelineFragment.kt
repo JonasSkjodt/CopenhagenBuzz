@@ -48,7 +48,14 @@ class TimelineFragment : Fragment() {
             // Update the EventAdapter with the new events
             eventAdapter.updateEvents(events)
         }
-
+        // show/hide the loading indicator
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.loadingTextView.visibility = if (isLoading) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
+        }
     }
 
     // Make sure to clear the binding when the view is destroyed
