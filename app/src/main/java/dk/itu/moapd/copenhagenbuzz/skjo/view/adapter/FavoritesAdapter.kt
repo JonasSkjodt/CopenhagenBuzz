@@ -3,6 +3,7 @@ package dk.itu.moapd.copenhagenbuzz.skjo.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FavoriteRowItemBinding
 import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
 
@@ -32,10 +33,10 @@ class FavoritesAdapter(private var events: List<Event>) : RecyclerView.Adapter<F
         fun bind(event: Event) {
             with(binding) {
                 cardTimelineTextEventName.text = event.eventName
-                //cardTimelineTextEventLocation.text = event.eventLocation
                 cardTimelineTextEventType.text = event.eventType
-                //cardTimelineTextEventDate.text = event.eventDate
-                //cardTimelineTextEventDescription.text = event.eventDescription
+                Picasso.get()
+                    .load(event.eventImage) // load the URL to the image
+                    .into(cardTimelineTextEventImage) // and then insert it into the xml imageview
             }
         }
     }

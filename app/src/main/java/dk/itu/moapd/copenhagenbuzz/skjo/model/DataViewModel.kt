@@ -31,45 +31,24 @@ class DataViewModel : ViewModel() {
     }
 
     // Asynchronously fetches the list of events (coroutines)
+    //@see https://developer.android.com/topic/libraries/architecture/coroutines
     private fun fetchEvents() {
-        //coroutine
-        //@see https://developer.android.com/topic/libraries/architecture/coroutines
-
-        /* use the homebrew testData*/
-        /*  viewModelScope.launch(Dispatchers.IO) {
-            //TODO change this to faker or just do the database later
-            val testData = listOf(
-                Event("Cph Festival", "Copenhagen Downtown", "Fri, Feb 02 2024 - Sun, Feb 25 2024", "Festival", "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."),
-                Event("Long eventname which is a festival somewhere with a long name", "Location 2", "Date 2", "Type 2", "Description 2"),
-                Event("Event 3", "Location 3", "Date 3", "Type 3", "Description 3"),
-                Event("Event 4", "Location 4", "Date 4", "Type 4", "Description 4"),
-                Event("Event 5", "Location 5", "Date 5", "Type 5", "Description 5")
-            )
-            // Create a list to hold 50 events, repeating the test data
-            val repeatedTestData = List(50) { i -> testData[i % testData.size] }
-
-            // Update the adapter with the test data
-            _events.postValue(repeatedTestData)*/
-
-            /* or use faker instead*/
-            // Initialize the Faker instance with a fixed random seed for reproducibility
-                val faker = Faker()
-
-                viewModelScope.launch(Dispatchers.IO) {
-                    val fakeEvents = List(20) {
-                        Event(
-                            eventName = faker.rockBand().name(), // Using a rock band name as a placeholder for event names
-                            eventLocation = "${faker.address().cityName()}, ${faker.address().country()}",
-                            eventDate = faker.date().future(365, TimeUnit.DAYS).toString(), // Random future date within the next year
-                            eventType = faker.book().genre(), // Using book genre as a placeholder for event types
-                            eventDescription = faker.lorem().paragraph(),
-                            eventImage = "https://picsum.photos/seed/$it/400/194"
-                        )
-                    }
-
+        // Initialize the Faker instance with a fixed random seed for reproducibility
+        // @see https://github.com/fabricionarcizo/moapd2024/blob/main/lecture05/05-1_RecyclerView/app/src/main/java/dk/itu/moapd/recyclerview/MainFragment.kt
+        val faker = Faker()
+            viewModelScope.launch(Dispatchers.IO) {
+                val fakeEvents = List(20) {
+                    Event(
+                        eventName = faker.rockBand().name(), // Using a rock band name as a placeholder for event names
+                        eventLocation = "${faker.address().cityName()}, ${faker.address().country()}",
+                        eventDate = faker.date().future(365, TimeUnit.DAYS).toString(), // Random future date within the next year
+                        eventType = faker.book().genre(), // Using book genre as a placeholder for event types
+                        eventDescription = faker.lorem().paragraph(),
+                        eventImage = "https://picsum.photos/seed/$it/400/194"
+                    )
+                }
             // Update the LiveData with the fake events data
             _events.postValue(fakeEvents)
-
         }
     }
     //favorites
