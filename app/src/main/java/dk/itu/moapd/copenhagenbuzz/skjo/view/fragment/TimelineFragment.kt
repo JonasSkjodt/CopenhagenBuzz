@@ -11,8 +11,7 @@ import dk.itu.moapd.copenhagenbuzz.skjo.model.DataViewModel
 import dk.itu.moapd.copenhagenbuzz.skjo.view.adapter.EventAdapter
 
 /**
- * (1) one for displaying the next events
- * in the Copenhagen area
+ * The TimelineFragment class displays events in the Copenhagen area
  */
 class TimelineFragment : Fragment() {
 
@@ -38,7 +37,10 @@ class TimelineFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize the ViewModel (this must be set as the same in timeline fragment and favorite fragment)
+        // Initialize the ViewModel
+        // note to self: this must be set as the same in timeline fragment and favorite fragment
+        // this is because ViewModelProvider(requireActivity()) ties the fragments to the same DataViewModel
+        // where ViewModelProvider(this) each gets a separate DataViewModel instance
         viewModel = ViewModelProvider(requireActivity()).get(DataViewModel::class.java)
 
         eventAdapter = EventAdapter(emptyList(), requireContext(), viewModel)
@@ -48,7 +50,7 @@ class TimelineFragment : Fragment() {
             // Update the EventAdapter with the new events
             eventAdapter.updateEvents(events)
         }
-        // show/hide the loading indicator
+        // show/hide the loading indicator (binding to loadingTextView in fragment_timeline.xml)
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.loadingTextView.visibility = if (isLoading) {
                 View.VISIBLE

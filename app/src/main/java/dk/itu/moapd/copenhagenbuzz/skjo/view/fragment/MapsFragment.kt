@@ -1,16 +1,15 @@
 package dk.itu.moapd.copenhagenbuzz.skjo.view.fragment
 
 import androidx.fragment.app.Fragment
-
-/**
- * (3) a third fragment with Google Maps to display event locations
- * in a map
- */
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.FragmentMapsBinding
+
+/**
+ * Google Maps to display event locations in a map
+ */
 
 class MapsFragment : Fragment() {
 

@@ -10,14 +10,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
+/**
+ * the ViewModel holds LiveData, keeping data separate from the UI logic
+ */
+
 class DataViewModel : ViewModel() {
 
     //loader showing for slow faker data
     val isLoading = MutableLiveData<Boolean>()
 
-    //timeline listview
+    // timeline listview
     // The internal MutableLiveData that stores the list of events
     private val _events = MutableLiveData<List<Event>>()
+
     // The external LiveData interface to the list of events
     // @see https://developer.android.com/topic/libraries/architecture/livedata
     val events: LiveData<List<Event>> = _events
@@ -38,8 +43,9 @@ class DataViewModel : ViewModel() {
      * @see [Coroutines](https://developer.android.com/topic/libraries/architecture/coroutines)
      */
     private fun fetchEvents() {
-        // Start loading
+        // Start loader while faker is fetching data
         isLoading.postValue(true)
+
         // Initialize the Faker instance with a fixed random seed for reproducibility
         // @see https://github.com/fabricionarcizo/moapd2024/blob/main/lecture05/05-1_RecyclerView/app/src/main/java/dk/itu/moapd/recyclerview/MainFragment.kt
         val faker = Faker()
@@ -57,7 +63,7 @@ class DataViewModel : ViewModel() {
         // Data has been fetched, post to LiveData
         _events.postValue(fakeEvents)
 
-        // Stop loading when faker shows its data
+        // Stop loader when faker shows its data
         isLoading.postValue(false)
         }
     }

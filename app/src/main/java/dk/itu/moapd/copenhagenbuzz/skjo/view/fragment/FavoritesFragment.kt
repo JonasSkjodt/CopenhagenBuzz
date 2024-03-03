@@ -3,7 +3,7 @@ package dk.itu.moapd.copenhagenbuzz.skjo.view.fragment
 import androidx.fragment.app.Fragment
 
 /**
- * , (2) another for showing user-favorite events
+ * The FavoritesFragment class shows user-favorite events
  */
 import android.os.Bundle
 import android.util.Log
