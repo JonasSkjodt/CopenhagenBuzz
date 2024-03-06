@@ -12,6 +12,13 @@ import dk.itu.moapd.copenhagenbuzz.skjo.databinding.EventRowItemBinding
 import dk.itu.moapd.copenhagenbuzz.skjo.model.DataViewModel
 import dk.itu.moapd.copenhagenbuzz.skjo.model.Event
 
+/**
+ * EventAdapter is used for the ListView that presents Event data in the TimeLine UI.
+ *
+ * @property events The list of events to be displayed.
+ * @property context The context in which the adapter is operating.
+ * @property viewModel The ViewModel that provides event data and business logic.
+ */
 class EventAdapter(
     private var events: List<Event>,
     private val context: Context,
@@ -55,9 +62,12 @@ class EventAdapter(
     }
 
     /**
-     * Handles the logic for the event favorite
-     * @param binding
-     * @param event
+     * Configures the favorite icon for each event in the ListView.
+     * Sets the checked state based on whether the event is in the favorites list and
+     * attaches listeners to handle changes in the favorite state.
+     *
+     * @param binding The binding for the event row item view.
+     * @param event The event associated with the current row being processed.
      */
     private fun cardFavoriteIcon(binding: EventRowItemBinding, event: Event) {
         // Detach any existing listeners to avoid unwanted behavior
@@ -84,8 +94,11 @@ class EventAdapter(
     }
 
     /**
-     * edit button on the material card view
-     * shows a placeholder text
+     * Attaches a listener to the edit button of each event in the ListView.
+     * Currently displays a placeholder message when the edit button is clicked.
+     *
+     * @param binding The binding for the event row item view.
+     *
      * @see [Dialogs](https://developer.android.com/develop/ui/views/components/dialogs)
      */
     private fun editButtonListener(binding: EventRowItemBinding) {
@@ -101,8 +114,11 @@ class EventAdapter(
     }
 
     /**
-     * info button on the material card view
-     * shows the full event description
+     * Attaches a listener to the info button of each event in the ListView.
+     * Displays the full event description in a dialog when the info button is clicked.
+     *
+     * @param binding The binding for the event row item view.
+     * @param event The event associated with the current row being processed.
      */
     private fun infoButtonListener(binding: EventRowItemBinding, event: Event) {
         binding.cardTimelineButtonInfo.setOnClickListener { view ->
@@ -116,7 +132,12 @@ class EventAdapter(
             builder.create().show()
         }
     }
-
+    /**
+     * Updates the list of events that the adapter is displaying and notifies the
+     * ListView that the data set has changed, making it refresh the UI.
+     *
+     * @param newEvents The new list of events to display.
+     */
     fun updateEvents(newEvents: List<Event>) {
         events = newEvents
         notifyDataSetChanged()

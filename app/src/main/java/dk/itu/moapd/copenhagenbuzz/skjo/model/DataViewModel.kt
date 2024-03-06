@@ -23,14 +23,19 @@ class DataViewModel : ViewModel() {
     // The internal MutableLiveData that stores the list of events
     private val _events = MutableLiveData<List<Event>>()
 
-    // The external LiveData interface to the list of events
-    // @see https://developer.android.com/topic/libraries/architecture/livedata
+    /**
+     * The external LiveData interface to the list of events
+     * @see [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
+     */
     val events: LiveData<List<Event>> = _events
 
     //favorites recycleview
     private val _favorites = MutableLiveData<List<Event>>()
     var favorites: LiveData<List<Event>> = _favorites
 
+    /**
+     * Initializes the ViewModel by fetching the initial lists of events and favorites.
+     */
     init {
         //events data
         fetchEvents()
@@ -39,7 +44,9 @@ class DataViewModel : ViewModel() {
     }
 
     /**
-     * Asynchronously fetches the list of events (coroutines)
+     *  Fetches a list of fake events asynchronously using coroutines and updates the LiveData.
+     *  Uses the Faker library to generate a list of events with randomized data.
+     *  The loading status is updated before and after the data fetching process, displayed "loading faker data" (from xml)
      * @see [Coroutines](https://developer.android.com/topic/libraries/architecture/coroutines)
      */
     private fun fetchEvents() {
@@ -67,12 +74,21 @@ class DataViewModel : ViewModel() {
         isLoading.postValue(false)
         }
     }
-    //favorites
+    /**
+    * Initializes the favorites LiveData with an empty list.
+    * It's initialized in init() to set up the initial state of the favorites list.
+    */
     private fun fetchFavorites() {
         //should be empty in the start
         _favorites.value = listOf()
     }
-
+    /**
+     * Adds a new event to the favorites list if it's not already contained within it.
+     * The method updates the LiveData with a new list that includes the added event.
+     * (Currently logs are provided for debug purposes)
+     *
+     * @param event The event to be added to the favorites list.
+     */
     fun addFavorite(event: Event) {
         // Log statement to indicate the method is called
         Log.d("DataViewModel", "Add favorite event: ${event.eventName}")
@@ -86,7 +102,12 @@ class DataViewModel : ViewModel() {
             Log.d("DataViewModel", "Updated favorites: ${updatedFavorites.joinToString { it.eventName }}")
         }
     }
-
+    /**
+     * Removes an event from the favorites list.
+     * The method updates the LiveData with a new list that excludes the removed event.
+     *
+     * @param event The event to be removed from the favorites list.
+     */
     fun removeFavorite(event: Event) {
         //remove an event from the favorites list
         val currentFavorites = _favorites.value ?: listOf()

@@ -17,9 +17,6 @@ import dk.itu.moapd.copenhagenbuzz.skjo.model.MainViewModel
 /**
  * The MainActivity class handles user interactions (like events) and initializes the UI in the app
  *
- * KDoc the code
- * @see (https://kotlinlang.org/docs/kotlin-doc.html#sample-identifier)
- * @see (https://source.android.com/docs/core/architecture/hidl/code-style)
  */
 class MainActivity : AppCompatActivity() {
 

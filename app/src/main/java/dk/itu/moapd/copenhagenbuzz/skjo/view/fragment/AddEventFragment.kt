@@ -14,6 +14,9 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+/**
+ *
+ */
 class AddEventFragment : Fragment(){
 
     private var _binding: FragmentAddEventBinding? = null
@@ -149,7 +152,9 @@ class AddEventFragment : Fragment(){
             show()
         }
     }
-
+    /**
+     * Cleans up the binding when the Fragment's view is being destroyed to avoid memory leaks.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

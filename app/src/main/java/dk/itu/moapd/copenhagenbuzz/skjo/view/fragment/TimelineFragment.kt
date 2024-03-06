@@ -11,7 +11,8 @@ import dk.itu.moapd.copenhagenbuzz.skjo.model.DataViewModel
 import dk.itu.moapd.copenhagenbuzz.skjo.view.adapter.EventAdapter
 
 /**
- * The TimelineFragment class displays events in the Copenhagen area
+ * TimelineFragment displays a timeline of events using a ListView.
+ * It uses DataViewModel to fetch and observe event data, updating the UI as necessary.
  */
 class TimelineFragment : Fragment() {
 
@@ -25,6 +26,14 @@ class TimelineFragment : Fragment() {
     private lateinit var eventAdapter: EventAdapter
     private lateinit var viewModel: DataViewModel
 
+    /**
+     * Inflates the layout for this fragment, initializes view binding, and sets up the timeline ListView.
+     *
+     * @param inflater Inflates the layout for this fragment.
+     * @param container The parent view the fragment's UI should be attached to.
+     * @param savedInstanceState Contains data supplied by the system if the fragment is being re-created.
+     * @return The root View for the fragment's UI.
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,14 +42,21 @@ class TimelineFragment : Fragment() {
         _binding = FragmentTimelineBinding.inflate(inflater, container, false)
         return binding.root
     }
-
+    /**
+     * Completes the initialization process of the ListView adapter and ViewModel.
+     * Subscribes to ViewModel LiveData for events and loading status updates.
+     *
+     * @param view The View returned by onCreateView().
+     * @param savedInstanceState If non-null, contains data supplied by the system if the fragment is being re-created.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize the ViewModel
-        // note to self: this must be set as the same in timeline fragment and favorite fragment
+        // note: this must be set as the same in timeline fragment and favorite fragment
         // this is because ViewModelProvider(requireActivity()) ties the fragments to the same DataViewModel
         // where ViewModelProvider(this) each gets a separate DataViewModel instance
+        // e.g. when you use "this", you create a new ViewModelProvider scoped to that specific fragment
         viewModel = ViewModelProvider(requireActivity()).get(DataViewModel::class.java)
 
         eventAdapter = EventAdapter(emptyList(), requireContext(), viewModel)
@@ -59,8 +75,9 @@ class TimelineFragment : Fragment() {
             }
         }
     }
-
-    // Make sure to clear the binding when the view is destroyed
+    /**
+     * Cleans up the binding when the Fragment's view is being destroyed to avoid memory leaks.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
