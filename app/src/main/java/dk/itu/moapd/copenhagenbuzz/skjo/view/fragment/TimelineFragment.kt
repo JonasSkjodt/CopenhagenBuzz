@@ -57,6 +57,7 @@ class TimelineFragment : Fragment() {
         // this is because ViewModelProvider(requireActivity()) ties the fragments to the same DataViewModel
         // where ViewModelProvider(this) each gets a separate DataViewModel instance
         // e.g. when you use "this", you create a new ViewModelProvider scoped to that specific fragment
+
         viewModel = ViewModelProvider(requireActivity()).get(DataViewModel::class.java)
 
         eventAdapter = EventAdapter(emptyList(), requireContext(), viewModel)
