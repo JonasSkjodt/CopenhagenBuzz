@@ -4,13 +4,13 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:fitsSystemWindows="true"
-tools:context=".view.FavoritesFragment">
+tools:context=".view.fragment.FavoritesFragment">
 
-<!--<androidx.recyclerview.widget.RecyclerView
+<androidx.recyclerview.widget.RecyclerView
     android:id="@+id/recyclerView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    tools:listitem="@layout/event_row_item" />-->
+    tools:listitem="@layout/favorite_row_item" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,4 +1,4 @@
-package dk.itu.moapd.copenhagenbuzz.skjo.view
+package dk.itu.moapd.copenhagenbuzz.skjo.view.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,9 +17,6 @@ import dk.itu.moapd.copenhagenbuzz.skjo.model.MainViewModel
 /**
  * The MainActivity class handles user interactions (like events) and initializes the UI in the app
  *
- * KDoc the code
- * @see (https://kotlinlang.org/docs/kotlin-doc.html#sample-identifier)
- * @see (https://source.android.com/docs/core/architecture/hidl/code-style)
  */
 class MainActivity : AppCompatActivity() {
 
@@ -73,7 +70,7 @@ class MainActivity : AppCompatActivity() {
      * Inflates the menu resource (defined in XML) into the Menu provided in the parameter.
      *
      * @param menu The options menu in which we place your items (currently linked to top_app_bar.xml).
-     * @return Boolean Return true to display the menu; if we return false it will not be shown.
+     * @return Boolean Return true to display the menu; if its returned as false it will not be shown.
      */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.top_app_bar, menu)
@@ -84,7 +81,7 @@ class MainActivity : AppCompatActivity() {
      * It shows or hides the menu items based on whether the user is logged in or not.
      *
      * @param menu The options menu as last shown or first initialized by onCreateOptionsMenu().
-     * @return Boolean we must return true for the menu to be displayed; if we return false it will not be shown.
+     * @return Boolean must return true for the menu to be displayed; if its returned as false it will not be shown.
      */
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         menu.findItem(R.id.user_account_item)?.isVisible = !viewModel.isLoggedIn
@@ -108,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(loginIntent)
                 true
             }
-            // Add more cases for other menu items as we go to the next exercises
+            // potetially add more cases for other menu items as we go to the next exercises...
             else -> super.onOptionsItemSelected(item)
         }
     }

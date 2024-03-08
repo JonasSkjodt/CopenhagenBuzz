@@ -1,4 +1,4 @@
-package dk.itu.moapd.copenhagenbuzz.skjo.view
+package dk.itu.moapd.copenhagenbuzz.skjo.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +14,9 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+/**
+ *
+ */
 class AddEventFragment : Fragment(){
 
     private var _binding: FragmentAddEventBinding? = null
@@ -51,6 +54,7 @@ class AddEventFragment : Fragment(){
         val addEventButton = binding.fabAddEvent
         val eventDate = binding.fieldEventDate
 
+
         // Set up event listeners
         with(eventDate) {
             editText?.setOnClickListener {
@@ -75,7 +79,8 @@ class AddEventFragment : Fragment(){
                     eventLocation = eventLocation.text.toString().trim(),
                     eventDate = eventDate.editText?.text.toString().trim(),
                     eventType = eventType.text.toString().trim(),
-                    eventDescription = eventDescription.text.toString().trim()
+                    eventDescription = eventDescription.text.toString().trim(),
+                    eventImage = eventDescription.text.toString().trim()
                 )
                 showMessage(event)
             }
@@ -147,7 +152,9 @@ class AddEventFragment : Fragment(){
             show()
         }
     }
-
+    /**
+     * Cleans up the binding when the Fragment's view is being destroyed to avoid memory leaks.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

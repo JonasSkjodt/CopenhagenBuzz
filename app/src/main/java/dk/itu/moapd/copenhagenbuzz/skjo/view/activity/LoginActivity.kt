@@ -1,4 +1,4 @@
-package dk.itu.moapd.copenhagenbuzz.skjo.view
+package dk.itu.moapd.copenhagenbuzz.skjo.view.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,12 +7,11 @@ import androidx.core.view.WindowCompat
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.ActivityLoginBinding
 
 /**
- * LoginActivity handles (placeholder) user and guest login
+ * LoginActivity handles user and guest login (note: for now placeholders are inserted until firebase is integrated)
  *
  * This activity provides the user interface for logging in. Users have the option to log in either
  * as a registered user or as a guest. When the user has logged in, it navigates to MainActivity.
  *
- * @constructor Creates an instance of LoginActivity.
  */
 class LoginActivity : AppCompatActivity() {
 

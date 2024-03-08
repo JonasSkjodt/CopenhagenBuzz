@@ -55,6 +55,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/event_name"
+                            android:scrollHorizontally="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
                         <TextView
@@ -62,6 +65,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/event_type"
+                            android:scrollHorizontally="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
                             android:textAppearance="?attr/textAppearanceBodyMedium" />
                     </LinearLayout>
 
@@ -81,6 +87,7 @@
 
             <!-- Event Image -->
             <ImageView
+                android:id="@+id/card_timeline_text_event_image"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:src="@drawable/placeholderimg"
@@ -100,6 +107,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/event_location"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:textAppearance="?attr/textAppearanceSubtitle1"
                     />
                 <TextView
@@ -108,6 +118,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@string/event_date"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:textAppearance="?attr/textAppearanceCaption"
                     />
                 <TextView
@@ -116,6 +129,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="@string/event_date"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:textAppearance="?attr/textAppearanceCaption"
                     />
             </LinearLayout>
@@ -138,13 +154,12 @@
                     />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/card_timeline_button_share"
+                    android:id="@+id/card_timeline_button_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Info"
                     />
             </LinearLayout>
-
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
