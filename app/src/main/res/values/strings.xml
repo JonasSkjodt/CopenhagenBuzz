@@ -15,4 +15,7 @@
     <string name="bottom_nav_map">Map</string>
     <string name="bottom_nav_calendar">Calendar</string>
     <string name="event_favorite">Favorite event</string>
+    <string name="user_info_title">User info</string>
+    <string name="action_logout">Logout</string>
+    <string name="not_logged_in">Not logged in</string>
 </resources>
