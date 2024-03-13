@@ -8,7 +8,7 @@ https://developer.android.com/reference/androidx/constraintlayout/widget/Constra
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <TextView
+        <!--<TextView
             style="?textAppearanceHeadlineSmall"
             android:id="@+id/text_view_app_name"
             android:layout_width="wrap_content"
@@ -19,10 +19,10 @@ https://developer.android.com/reference/androidx/constraintlayout/widget/Constra
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginBottom="10dp"/>
 
-        <!--
+
         @see material buttons
         https://github.com/material-components/material-components-android/blob/master/docs/components/Button.md
-        -->
+
         <Button
             android:id="@+id/user_login_button_front"
             android:layout_width="wrap_content"
@@ -47,5 +47,5 @@ https://developer.android.com/reference/androidx/constraintlayout/widget/Constra
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/user_login_button_front"
             app:layout_constraintTop_toTopOf="parent" />
-
+-->
 </androidx.constraintlayout.widget.ConstraintLayout>
