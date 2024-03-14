@@ -1,23 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/timelineFragment"
-        android:icon="@drawable/baseline_view_timeline_24"
-        android:title="@string/bottom_nav_timeline" />
-
+        android:id="@+id/main_item"
+        android:title="Account links">
+        <menu>
+            <item
+                android:id="@+id/search_item"
+                android:icon="@drawable/baseline_favorite_24"
+                android:title="title 1"
+                android:checkable="true"
+                app:showAsAction="ifRoom"/>
+            <item
+                android:id="@+id/rotation_item"
+                android:icon="@drawable/baseline_favorite_24"
+                android:title="title 2"
+                android:checkable="true"
+                app:showAsAction="ifRoom"/>
+            <item
+                android:id="@+id/accelerator_item"
+                android:icon="@drawable/baseline_favorite_24"
+                android:title="title 3"
+                android:checkable="true"
+                app:showAsAction="ifRoom"/>
+            <item
+                android:id="@+id/dashboard_item"
+                android:icon="@drawable/baseline_favorite_24"
+                android:title="title 4"
+                android:checkable="true"
+                app:showAsAction="ifRoom"/>
+        </menu>
+    </item>
     <item
-        android:id="@+id/favoriteFragment"
-        android:icon="@drawable/baseline_favorite_24"
-        android:title="@string/bottom_nav_favorites" />
-
-    <item
-        android:id="@+id/mapsFragment"
-        android:icon="@drawable/baseline_map_24"
-        android:title="@string/bottom_nav_map" />
-
-    <item
-        android:id="@+id/calendarFragment"
-        android:icon="@drawable/baseline_calendar_today_24"
-        android:title="@string/bottom_nav_calendar" />
+        android:id="@+id/labels_item"
+        android:title="Fragment links">
+        <menu>
+            <item
+                android:id="@+id/label_one"
+                android:icon="@drawable/baseline_favorite_24"
+                android:title="title 5"
+                android:checkable="true"
+                app:showAsAction="ifRoom"/>
+            <item
+                android:id="@+id/label_two"
+                android:icon="@drawable/baseline_favorite_24"
+                android:title="title 6"
+                android:checkable="true"
+                app:showAsAction="ifRoom"/>
+        </menu>
+    </item>
 </menu>
