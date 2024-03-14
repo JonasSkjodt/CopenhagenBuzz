@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.ActivityMainBinding
@@ -44,8 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Sets up the current layout, the view bindings, and listeners.
-     * When the add event button is clicked, it validates the input fields and then creates this new event (if all fields are non-empty).
+     * Sets up the current layout
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -67,6 +67,19 @@ class MainActivity : AppCompatActivity() {
 
         // Set up the BottomNavigationView with NavController
         binding.bottomNavigationView.setupWithNavController(navController)
+
+        // Add a listener to intercept navigation to AddEventFragment
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.addeventFragment) {
+                val user = FirebaseAuth.getInstance().currentUser
+                if (user != null && !user.isAnonymous) {
+                    // User is signed in and not a guest, allow navigation
+                } else {
+                    // Navigate to timeline fragment if its a guest
+                    navController.navigate(R.id.timelineFragment)
+                }
+            }
+        }
 
         if (savedInstanceState == null) {
             viewModel.isLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
