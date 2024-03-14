@@ -8,8 +8,6 @@ https://developer.android.com/reference/androidx/constraintlayout/widget/Constra
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
         <TextView
             style="?textAppearanceHeadlineSmall"
             android:id="@+id/text_view_app_name"
@@ -46,6 +44,7 @@ https://developer.android.com/reference/androidx/constraintlayout/widget/Constra
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_email_login"
-            app:layout_constraintTop_toTopOf="parent" />
--->
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

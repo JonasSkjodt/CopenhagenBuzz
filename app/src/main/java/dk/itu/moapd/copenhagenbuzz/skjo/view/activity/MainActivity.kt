@@ -5,13 +5,18 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import dk.itu.moapd.copenhagenbuzz.skjo.databinding.ActivityMainBinding
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import dk.itu.moapd.copenhagenbuzz.skjo.R
@@ -28,6 +33,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     //firebase
     private lateinit var auth: FirebaseAuth
+    //header nav side menu
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     // A set of private constants used in this class.
     companion object {
@@ -68,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         // Set up the BottomNavigationView with NavController
         binding.bottomNavigationView.setupWithNavController(navController)
 
-        // Add a listener to intercept navigation to AddEventFragment
+        // Add a listener to intercept navigation to AddEventFragment (so the user can't access addeventfragment)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.addeventFragment) {
                 val user = FirebaseAuth.getInstance().currentUser
@@ -81,6 +88,26 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Set up the DrawerLayout and ActionBarDrawerToggle so the sidebar can actually slide open
+        val drawerLayout: DrawerLayout = binding.drawerLayout
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, binding.topAppBar,
+            R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        // Setup ActionBar with NavController and DrawerLayout
+        appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.timelineFragment, R.id.favoriteFragment, R.id.mapsFragment, R.id.calendarFragment
+        ), drawerLayout)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        // Setup NavigationView with NavController
+        val navigationView: NavigationView = binding.navView
+        navigationView.setupWithNavController(navController)
+
+        //remembers if the user is logged in or not
         if (savedInstanceState == null) {
             viewModel.isLoggedIn = intent.getBooleanExtra("isLoggedIn", false)
         }

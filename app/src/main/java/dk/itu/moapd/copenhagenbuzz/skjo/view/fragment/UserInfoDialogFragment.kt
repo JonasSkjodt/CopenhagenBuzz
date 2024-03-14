@@ -41,8 +41,6 @@ class UserInfoDialogFragment : DialogFragment() {
         val currentUser = FirebaseAuth.getInstance().currentUser
 
         currentUser?.let { user ->
-
-
             view.textViewName.text = user.displayName ?: ""
             view.textViewEmail.text = user.email ?: ""
             user.photoUrl?.let { url ->
