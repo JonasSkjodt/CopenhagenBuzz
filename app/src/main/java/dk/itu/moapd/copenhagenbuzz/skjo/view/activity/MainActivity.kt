@@ -19,6 +19,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import dk.itu.moapd.copenhagenbuzz.skjo.R
 import dk.itu.moapd.copenhagenbuzz.skjo.model.MainViewModel
 import dk.itu.moapd.copenhagenbuzz.skjo.view.fragment.UserInfoDialogFragment
@@ -33,8 +34,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     //firebase
     private lateinit var auth: FirebaseAuth
-    //header nav side menu
-    private lateinit var appBarConfiguration: AppBarConfiguration
 
     // A set of private constants used in this class.
     companion object {
@@ -98,14 +97,14 @@ class MainActivity : AppCompatActivity() {
         toggle.syncState()
 
         // Setup ActionBar with NavController and DrawerLayout
-        appBarConfiguration = AppBarConfiguration(setOf(
+        /*appBarConfiguration = AppBarConfiguration(setOf(
             R.id.timelineFragment, R.id.favoriteFragment, R.id.mapsFragment, R.id.calendarFragment
         ), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         // Setup NavigationView with NavController
         val navigationView: NavigationView = binding.navView
-        navigationView.setupWithNavController(navController)
+        navigationView.setupWithNavController(navController)*/
 
         //remembers if the user is logged in or not
         if (savedInstanceState == null) {
@@ -113,9 +112,18 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    private fun updateDrawerMenu(user: FirebaseUser?) {
+        val navigationView = binding.navView
+        val menu = navigationView.menu
+        val userItems = menu.findItem(R.id.navigation_user_items) // The ID for the user specific menu items (drawer_menu.xml)
+        userItems.isVisible = user != null && !user.isAnonymous // Show the items if the user is logged in and hide them if not
+    }
+
     //firebase
     override fun onStart() {
         super.onStart()
+        val currentUser = auth.currentUser
+        updateDrawerMenu(currentUser)
         // Redirect the user to the LoginActivity
         // if they are not logged in.
         auth.currentUser ?: startLoginActivity()
