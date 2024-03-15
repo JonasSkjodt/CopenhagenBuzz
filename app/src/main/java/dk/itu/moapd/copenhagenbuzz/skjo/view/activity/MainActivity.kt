@@ -30,6 +30,7 @@ import dk.itu.moapd.copenhagenbuzz.skjo.model.MainViewModel
 import dk.itu.moapd.copenhagenbuzz.skjo.view.fragment.UserInfoDialogFragment
 import dk.itu.moapd.copenhagenbuzz.skjo.view.fragment.UserInfoFragment
 
+
 /**
  * The MainActivity class handles user interactions (like events) and initializes the UI in the app
  *
@@ -130,7 +131,9 @@ class MainActivity : AppCompatActivity() {
     //show the update data when a user is logged in.
     //TODO this version of updateNavigationHeader is tied to the UserInfoFragment
     //TODO it gets the correct data but doesnt update the UI yet, look into it at a later date
-    /*fun updateNavigationHeader(user: FirebaseUser?) {
+    //TODO most likely because i didnt do the xml for the fragment, ie fragmet_info_user.xml and then inflate it
+    /*
+    fun updateNavigationHeader(user: FirebaseUser?) {
         Log.d("UserInfoFragment", "Updating navigation header.")
         user?.let { nonAnonymousUser ->
 
@@ -156,44 +159,77 @@ class MainActivity : AppCompatActivity() {
         val userLoginButtonView = headerView.findViewById<Button>(R.id.header_nav_login_button)
         val userPhotoImageView = headerView.findViewById<ImageView>(R.id.header_nav_image_user_photo)
 
-        user?.let { nonAnonymousUser ->
-            userNameTextView.text = nonAnonymousUser.displayName ?: "No Name"
-            userEmailTextView.text = nonAnonymousUser.email ?: "No Email"
-            userLoginButtonView.text = getString(R.string.Logout)
-            nonAnonymousUser.photoUrl?.let { photoUrl ->
-                Picasso.get().load(photoUrl).placeholder(R.drawable.round_account_circle_24)
-                    .error(R.drawable.round_account_circle_24).into(userPhotoImageView)
-            } ?: run {
-                // No photo URL provided, set a default image
+        user?.let { firebaseUser ->
+            if (!firebaseUser.isAnonymous) {
+                // User is signed in and not a guest
+                userNameTextView.text = firebaseUser.displayName ?: ""
+                userEmailTextView.text = firebaseUser.email ?: ""
+                userLoginButtonView.text = getString(R.string.Logout)
+                firebaseUser.photoUrl?.let { photoUrl ->
+                    Picasso.get()
+                        .load(photoUrl)
+                        .placeholder(R.drawable.round_account_circle_24)
+                        .error(R.drawable.round_account_circle_24)
+                        .into(userPhotoImageView)
+                } ?: run {
+                    userPhotoImageView.setImageResource(R.drawable.round_account_circle_24)
+                }
+                userLoginButtonView.setOnClickListener {
+                    Log.d("LoginButton", "Button clicked as logged in")
+                    auth.signOut() // Sign out the user
+                    startLoginActivity() // Redirect to login activity
+                }
+            } else {
+                // User is signed in as a guest
+                userNameTextView.text = getString(R.string.navigation_user_name)
+                userEmailTextView.text = getString(R.string.navigation_user_email)
                 userPhotoImageView.setImageResource(R.drawable.round_account_circle_24)
+                userLoginButtonView.text = getString(R.string.Login)
+                userLoginButtonView.setOnClickListener {
+                    Log.d("LoginButton", "Button clicked as guest")
+                    startLoginActivity() // Redirect to login activity
+                }
             }
         } ?: run {
-            // No user is logged in, show default text and image
+            // No user is logged in at all, show default text and image
+            // TODO dunno if this is needed but lets keep it for the time being
             userNameTextView.text = getString(R.string.navigation_user_name)
             userEmailTextView.text = getString(R.string.navigation_user_email)
             userPhotoImageView.setImageResource(R.drawable.round_account_circle_24)
+            userLoginButtonView.text = getString(R.string.Login)
+            userLoginButtonView.setOnClickListener {
+                startLoginActivity() // Redirect to login activity
+            }
         }
     }
 
-    //firebase
     override fun onStart() {
         super.onStart()
+        checkUserStatus()
+    }
+
+    //checks if the user is logged in or not
+    private fun checkUserStatus() {
         val currentUser = auth.currentUser
         // Update the drawer menu links
         updateDrawerMenu(currentUser)
         // Update the navigation header
         updateNavigationHeader(currentUser)
-        // Redirect the user to the LoginActivity
-        // if they are not logged in.
-        auth.currentUser ?: startLoginActivity()
+        // If the user is not logged in, redirect to the LoginActivity
+        if (currentUser == null) {
+            startLoginActivity()
+        }
     }
+
     //firebase
     private fun startLoginActivity() {
+
         Intent(this, LoginActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or
                     Intent.FLAG_ACTIVITY_CLEAR_TASK
         }.let(::startActivity)
     }
+
 
     /**
      * Inflates the menu resource (defined in XML) into the Menu provided in the parameter.
