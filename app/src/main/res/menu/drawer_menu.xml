@@ -3,49 +3,61 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/main_item"
-        android:title="Account links">
+        android:id="@+id/navigation_user_items"
+        android:title="User Settings">
         <menu>
             <item
-                android:id="@+id/search_item"
-                android:icon="@drawable/baseline_favorite_24"
-                android:title="title 1"
+                android:id="@+id/navigation_user_account"
+                android:icon="@drawable/round_account_circle_24"
+                android:title="Account"
                 android:checkable="true"
                 app:showAsAction="ifRoom"/>
             <item
-                android:id="@+id/rotation_item"
-                android:icon="@drawable/baseline_favorite_24"
-                android:title="title 2"
+                android:id="@+id/navigation_user_new_event"
+                android:icon="@drawable/baseline_add_circle_24"
+                android:title="New event"
                 android:checkable="true"
                 app:showAsAction="ifRoom"/>
             <item
-                android:id="@+id/accelerator_item"
-                android:icon="@drawable/baseline_favorite_24"
-                android:title="title 3"
-                android:checkable="true"
-                app:showAsAction="ifRoom"/>
-            <item
-                android:id="@+id/dashboard_item"
-                android:icon="@drawable/baseline_favorite_24"
-                android:title="title 4"
+                android:id="@+id/navigation_user_event_history"
+                android:icon="@drawable/baseline_history_24"
+                android:title="Event history"
                 android:checkable="true"
                 app:showAsAction="ifRoom"/>
         </menu>
     </item>
     <item
-        android:id="@+id/labels_item"
-        android:title="Fragment links">
+        android:id="@+id/navigation_general_settings_items"
+        android:title="@string/navigation_general_headline">
         <menu>
             <item
-                android:id="@+id/label_one"
-                android:icon="@drawable/baseline_favorite_24"
-                android:title="title 5"
+                android:id="@+id/navigation_item_notifications"
+                android:icon="@drawable/baseline_circle_notifications_24"
+                android:title="@string/navigation_general_notifications"
                 android:checkable="true"
                 app:showAsAction="ifRoom"/>
             <item
-                android:id="@+id/label_two"
-                android:icon="@drawable/baseline_favorite_24"
-                android:title="title 6"
+                android:id="@+id/navigation_item_support"
+                android:icon="@drawable/baseline_support_24"
+                android:title="@string/navigation_general_support"
+                android:checkable="true"
+                app:showAsAction="ifRoom"/>
+            <item
+                android:id="@+id/navigation_item_settings"
+                android:icon="@drawable/baseline_settings_24"
+                android:title="@string/navigation_general_settings"
+                android:checkable="true"
+                app:showAsAction="ifRoom"/>
+            <item
+                android:id="@+id/navigation_item_help"
+                android:icon="@drawable/baseline_help_24"
+                android:title="@string/navigation_general_help"
+                android:checkable="true"
+                app:showAsAction="ifRoom"/>
+            <item
+                android:id="@+id/navigation_item_termsandconditions"
+                android:icon="@drawable/baseline_gavel_24"
+                android:title="@string/navigation_general_termsandconditions"
                 android:checkable="true"
                 app:showAsAction="ifRoom"/>
         </menu>
