@@ -9,7 +9,7 @@
     <string name="user_login_button">Login</string>
     <string name="guest_login_button">Guest</string>
     <string name="Login">Sign in</string>
-    <string name="Logout">Logout</string>
+    <string name="Logout">Sign out</string>
     <string name="bottom_nav_timeline">Timeline</string>
     <string name="bottom_nav_favorites">Favorites</string>
     <string name="bottom_nav_map">Map</string>

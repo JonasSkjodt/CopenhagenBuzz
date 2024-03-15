@@ -19,6 +19,7 @@ https://github.com/material-components/material-components-android/blob/master/d
         android:layout_height="55dp"
         android:src="@drawable/round_account_circle_24"
         android:layout_marginTop="40dp"
+        android:contentDescription="@string/navigation_user_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />

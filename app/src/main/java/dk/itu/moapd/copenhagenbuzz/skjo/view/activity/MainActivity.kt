@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -152,11 +153,13 @@ class MainActivity : AppCompatActivity() {
         // Update the UI components of the header directly
         val userNameTextView = headerView.findViewById<TextView>(R.id.header_nav_text_user_name)
         val userEmailTextView = headerView.findViewById<TextView>(R.id.header_nav_text_user_email)
+        val userLoginButtonView = headerView.findViewById<Button>(R.id.header_nav_login_button)
         val userPhotoImageView = headerView.findViewById<ImageView>(R.id.header_nav_image_user_photo)
 
         user?.let { nonAnonymousUser ->
             userNameTextView.text = nonAnonymousUser.displayName ?: "No Name"
             userEmailTextView.text = nonAnonymousUser.email ?: "No Email"
+            userLoginButtonView.text = getString(R.string.Logout)
             nonAnonymousUser.photoUrl?.let { photoUrl ->
                 Picasso.get().load(photoUrl).placeholder(R.drawable.round_account_circle_24)
                     .error(R.drawable.round_account_circle_24).into(userPhotoImageView)
