@@ -14,10 +14,10 @@ package dk.itu.moapd.copenhagenbuzz.skjo.model
  */
 
 data class Event(
-    var eventName: String,
-    var eventLocation: String,
-    var eventDate: String,
-    var eventType: String,
-    var eventDescription: String,
-    var eventImage: String
+    val eventName: String,
+    val eventLocation: String,
+    val eventDate: String,
+    val eventType: String,
+    val eventDescription: String,
+    val eventImage: String
 )

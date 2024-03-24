@@ -39,8 +39,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Sets up the current layout, the view bindings, and listeners.
-     * When the add event button is clicked, it validates the input fields and then creates this new event (if all fields are non-empty).
+     * Sets up the current layout and the view bindings.
+     *
+     * @param savedInstanceState Bundle containing the activity's previously saved state; it's null on first creation.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)

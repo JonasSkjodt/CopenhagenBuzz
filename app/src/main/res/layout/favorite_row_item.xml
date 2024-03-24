@@ -31,7 +31,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/placeholderletter2"
-                android:contentDescription="username" />
+                android:contentDescription="@string/username" />
 
             <LinearLayout
                 android:id="@+id/top_event_name_and_type"
@@ -71,7 +71,7 @@
                 android:src="@drawable/placeholderimg"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
-                android:contentDescription="media image" />
+                android:contentDescription="@string/media_image" />
 
         </LinearLayout>
 

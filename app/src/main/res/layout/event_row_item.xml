@@ -39,7 +39,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/placeholderletter2"
-                    android:contentDescription="username" />
+                    android:contentDescription="@string/username" />
 
                     <!-- Start event name and event type -->
                     <LinearLayout
@@ -79,7 +79,7 @@
                     android:layout_weight="0.5"
                     android:layout_gravity="center_vertical"
                     android:button="@drawable/checkbox_favorite_heart"
-                    android:contentDescription="favorite"
+                    android:contentDescription="@string/favorite"
                     app:tint="@color/purple"
                     />
 
@@ -92,7 +92,7 @@
                 android:layout_height="160dp"
                 android:src="@drawable/placeholderimg"
                 android:scaleType="centerCrop"
-                android:contentDescription="media image"
+                android:contentDescription="@string/media_image"
                 />
 
             <!-- event location, date, description -->
@@ -150,14 +150,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="6dp"
                     style="?attr/materialButtonOutlinedStyle"
-                    android:text="Edit"
+                    android:text="@string/edit"
                     />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/card_timeline_button_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Info"
+                    android:text="@string/info"
                     />
             </LinearLayout>
         </LinearLayout>

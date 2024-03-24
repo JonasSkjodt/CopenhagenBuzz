@@ -15,4 +15,12 @@
     <string name="bottom_nav_map">Map</string>
     <string name="bottom_nav_calendar">Calendar</string>
     <string name="event_favorite">Favorite event</string>
+    <string name="favorite">Favorite</string>
+    <string name="Google_maps">Google Maps</string>
+    <string name="Calendar">Calendar</string>
+    <string name="faker_data">Loading faker data...</string>
+    <string name="username">Username</string>
+    <string name="media_image">Media image</string>
+    <string name="edit">Edit</string>
+    <string name="info">Info</string>
 </resources>
